@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D12b" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="WXO-g1-oXq">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Side BarVC-->
+        <scene sceneID="hZi-ic-njK">
+            <objects>
+                <viewController storyboardIdentifier="sidebar vc" id="WXO-g1-oXq" customClass="SideBarVC" customModule="MedicatioNeura" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="kDI-y5-TWX"/>
+                        <viewControllerLayoutGuide type="bottom" id="hDS-5X-Ghq"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="fk4-nR-IfS">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="WHEN YOUR MEDICAL ADHERENCE APP WORKS WITH NEURA - IT JUST WORKS." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6r2-l7-40r">
+                                <rect key="frame" x="100" y="63" width="264" height="103"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="264" id="NhC-B2-SGu"/>
+                                    <constraint firstAttribute="height" constant="103" id="gxi-KV-VNE"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="whitelogosmall" translatesAutoresizingMaskIntoConstraints="NO" id="rXc-wb-Xac">
+                                <rect key="frame" x="100" y="30" width="20" height="22"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="22" id="3eJ-JI-tMr"/>
+                                    <constraint firstAttribute="width" constant="20" id="GSm-Qc-JEI"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y9y-pS-8nT">
+                                <rect key="frame" x="100" y="174" width="252" height="218"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="252" id="RGZ-lX-njh"/>
+                                    <constraint firstAttribute="height" constant="218" id="j1F-mH-7Zw"/>
+                                </constraints>
+                                <string key="text">Perfectly time your engagement with each user and help them at the exact moment they need it.
+
+Integrating Neura into your app takes less than an hour. Request a link to the SDK and get started now.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lAm-v5-UDm" customClass="CustomButton" customModule="MedicatioNeura" customModuleProvider="target">
+                                <rect key="frame" x="115" y="465" width="223" height="45"/>
+                                <color key="backgroundColor" red="0.0" green="0.79607843137254897" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="223" id="AO5-tE-oFd"/>
+                                    <constraint firstAttribute="height" constant="45" id="ibj-WS-zDr"/>
+                                </constraints>
+                                <state key="normal" title="GET STARTED WITH NEURA">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="shareButtonPressed:" destination="WXO-g1-oXq" eventType="touchUpInside" id="Ct8-1H-xqv"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.0" green="0.79607843137254897" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <gestureRecognizers/>
+                        <constraints>
+                            <constraint firstItem="6r2-l7-40r" firstAttribute="leading" secondItem="fk4-nR-IfS" secondAttribute="leading" constant="100" id="1zv-ag-uzc"/>
+                            <constraint firstItem="lAm-v5-UDm" firstAttribute="centerX" secondItem="Y9y-pS-8nT" secondAttribute="centerX" id="21w-RV-ua8"/>
+                            <constraint firstItem="6r2-l7-40r" firstAttribute="top" secondItem="rXc-wb-Xac" secondAttribute="bottom" constant="11" id="90w-Ae-IIc"/>
+                            <constraint firstAttribute="bottom" secondItem="lAm-v5-UDm" secondAttribute="bottom" constant="157" id="BXa-Wl-5ub"/>
+                            <constraint firstItem="Y9y-pS-8nT" firstAttribute="leading" secondItem="fk4-nR-IfS" secondAttribute="leading" constant="100" id="CVt-Jn-OMC"/>
+                            <constraint firstItem="Y9y-pS-8nT" firstAttribute="top" secondItem="6r2-l7-40r" secondAttribute="bottom" constant="8" id="vRb-10-tV3"/>
+                            <constraint firstItem="6r2-l7-40r" firstAttribute="leading" secondItem="rXc-wb-Xac" secondAttribute="leading" id="vcO-bn-x6G"/>
+                            <constraint firstItem="rXc-wb-Xac" firstAttribute="top" secondItem="fk4-nR-IfS" secondAttribute="top" constant="30" id="xvf-fp-AfJ"/>
+                        </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="BVX-as-8bn" appends="YES" id="BNp-G4-TWz"/>
+                        </connections>
+                    </view>
+                    <connections>
+                        <outlet property="shareButton" destination="lAm-v5-UDm" id="l5r-wT-Xl4"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0RR-eG-yZ9" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <swipeGestureRecognizer direction="right" id="BVX-as-8bn"/>
+            </objects>
+            <point key="canvasLocation" x="117.59999999999999" y="51.724137931034484"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="whitelogosmall" width="20" height="22"/>
+    </resources>
+</document>

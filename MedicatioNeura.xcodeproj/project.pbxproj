@@ -7,21 +7,42 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		04D1D79AD1D65F592F3FEB65 /* Pods_MedicatioNeura.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9824156CFB4A2A26BCD4216 /* Pods_MedicatioNeura.framework */; };
+		4129E0BD1E03F3B90053925E /* SideBar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4129E0BC1E03F3B90053925E /* SideBar.storyboard */; };
+		4129E0BF1E040B630053925E /* SideBarVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4129E0BE1E040B630053925E /* SideBarVC.swift */; };
+		41AE5BA21E01838D00A46E7A /* CustomLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41AE5BA11E01838D00A46E7A /* CustomLabel.swift */; };
+		41E92C631DE499E3009AC671 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41E92C621DE499E3009AC671 /* Constants.swift */; };
+		41E92C691DE5A002009AC671 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 41E92C681DE5A002009AC671 /* Login.storyboard */; };
+		41E92C6F1DE5B45A009AC671 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41E92C6E1DE5B45A009AC671 /* LoginVC.swift */; };
+		41E92C721DE5CB63009AC671 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41E92C711DE5CB63009AC671 /* CustomButton.swift */; };
+		41E92C761DE5E086009AC671 /* NeuraSDKManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41E92C751DE5E086009AC671 /* NeuraSDKManager.swift */; };
 		41F3D1651DE2F0C10078A06D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41F3D1641DE2F0C10078A06D /* AppDelegate.swift */; };
-		41F3D1671DE2F0C10078A06D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41F3D1661DE2F0C10078A06D /* ViewController.swift */; };
+		41F3D1671DE2F0C10078A06D /* MainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41F3D1661DE2F0C10078A06D /* MainVC.swift */; };
 		41F3D16A1DE2F0C10078A06D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 41F3D1681DE2F0C10078A06D /* Main.storyboard */; };
 		41F3D16C1DE2F0C10078A06D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 41F3D16B1DE2F0C10078A06D /* Assets.xcassets */; };
 		41F3D16F1DE2F0C10078A06D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 41F3D16D1DE2F0C10078A06D /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		36C384E5FA930467F93DC4BC /* Pods-MedicatioNeura.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MedicatioNeura.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MedicatioNeura/Pods-MedicatioNeura.debug.xcconfig"; sourceTree = "<group>"; };
+		4129E0BC1E03F3B90053925E /* SideBar.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SideBar.storyboard; sourceTree = "<group>"; };
+		4129E0BE1E040B630053925E /* SideBarVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideBarVC.swift; sourceTree = "<group>"; };
+		41AE5BA11E01838D00A46E7A /* CustomLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomLabel.swift; sourceTree = "<group>"; };
+		41CE66981DE74D57001A5A8F /* MedicatioNeura.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MedicatioNeura.entitlements; sourceTree = "<group>"; };
+		41E92C621DE499E3009AC671 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		41E92C681DE5A002009AC671 /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
+		41E92C6E1DE5B45A009AC671 /* LoginVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
+		41E92C711DE5CB63009AC671 /* CustomButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
+		41E92C751DE5E086009AC671 /* NeuraSDKManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NeuraSDKManager.swift; path = "NeuraSDK Manager/NeuraSDKManager.swift"; sourceTree = "<group>"; };
 		41F3D1611DE2F0C10078A06D /* MedicatioNeura.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MedicatioNeura.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		41F3D1641DE2F0C10078A06D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		41F3D1661DE2F0C10078A06D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		41F3D1661DE2F0C10078A06D /* MainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainVC.swift; sourceTree = "<group>"; };
 		41F3D1691DE2F0C10078A06D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		41F3D16B1DE2F0C10078A06D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		41F3D16E1DE2F0C10078A06D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		41F3D1701DE2F0C10078A06D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B9CDDEC3DFD89468595C9A13 /* Pods-MedicatioNeura.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MedicatioNeura.release.xcconfig"; path = "Pods/Target Support Files/Pods-MedicatioNeura/Pods-MedicatioNeura.release.xcconfig"; sourceTree = "<group>"; };
+		E9824156CFB4A2A26BCD4216 /* Pods_MedicatioNeura.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MedicatioNeura.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,17 +50,65 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04D1D79AD1D65F592F3FEB65 /* Pods_MedicatioNeura.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4129E0BB1E03F3A70053925E /* SideBar */ = {
+			isa = PBXGroup;
+			children = (
+				4129E0BC1E03F3B90053925E /* SideBar.storyboard */,
+				4129E0BE1E040B630053925E /* SideBarVC.swift */,
+			);
+			name = SideBar;
+			sourceTree = "<group>";
+		};
+		41E92C641DE49AC2009AC671 /* Main View Controller */ = {
+			isa = PBXGroup;
+			children = (
+				41F3D1681DE2F0C10078A06D /* Main.storyboard */,
+				41F3D1661DE2F0C10078A06D /* MainVC.swift */,
+			);
+			name = "Main View Controller";
+			sourceTree = "<group>";
+		};
+		41E92C6D1DE5A0CB009AC671 /* Login VC */ = {
+			isa = PBXGroup;
+			children = (
+				41E92C681DE5A002009AC671 /* Login.storyboard */,
+				41E92C6E1DE5B45A009AC671 /* LoginVC.swift */,
+			);
+			path = "Login VC";
+			sourceTree = "<group>";
+		};
+		41E92C701DE5CAAC009AC671 /* Custom viewa & utilities */ = {
+			isa = PBXGroup;
+			children = (
+				41E92C621DE499E3009AC671 /* Constants.swift */,
+				41E92C711DE5CB63009AC671 /* CustomButton.swift */,
+				41AE5BA11E01838D00A46E7A /* CustomLabel.swift */,
+			);
+			path = "Custom viewa & utilities";
+			sourceTree = "<group>";
+		};
+		41E92C741DE5E041009AC671 /* NeuraSDK Manager */ = {
+			isa = PBXGroup;
+			children = (
+				41E92C751DE5E086009AC671 /* NeuraSDKManager.swift */,
+			);
+			name = "NeuraSDK Manager";
+			sourceTree = "<group>";
+		};
 		41F3D1581DE2F0C10078A06D = {
 			isa = PBXGroup;
 			children = (
 				41F3D1631DE2F0C10078A06D /* MedicatioNeura */,
 				41F3D1621DE2F0C10078A06D /* Products */,
+				FD8552387F11F86D6B3765AB /* Pods */,
+				47C8C5204991CC84992CCDFF /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -54,14 +123,35 @@
 		41F3D1631DE2F0C10078A06D /* MedicatioNeura */ = {
 			isa = PBXGroup;
 			children = (
+				41CE66981DE74D57001A5A8F /* MedicatioNeura.entitlements */,
 				41F3D1641DE2F0C10078A06D /* AppDelegate.swift */,
-				41F3D1661DE2F0C10078A06D /* ViewController.swift */,
-				41F3D1681DE2F0C10078A06D /* Main.storyboard */,
+				4129E0BB1E03F3A70053925E /* SideBar */,
+				41E92C701DE5CAAC009AC671 /* Custom viewa & utilities */,
+				41E92C6D1DE5A0CB009AC671 /* Login VC */,
+				41E92C641DE49AC2009AC671 /* Main View Controller */,
+				41E92C741DE5E041009AC671 /* NeuraSDK Manager */,
 				41F3D16B1DE2F0C10078A06D /* Assets.xcassets */,
 				41F3D16D1DE2F0C10078A06D /* LaunchScreen.storyboard */,
 				41F3D1701DE2F0C10078A06D /* Info.plist */,
 			);
 			path = MedicatioNeura;
+			sourceTree = "<group>";
+		};
+		47C8C5204991CC84992CCDFF /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E9824156CFB4A2A26BCD4216 /* Pods_MedicatioNeura.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		FD8552387F11F86D6B3765AB /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				36C384E5FA930467F93DC4BC /* Pods-MedicatioNeura.debug.xcconfig */,
+				B9CDDEC3DFD89468595C9A13 /* Pods-MedicatioNeura.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -71,9 +161,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 41F3D1731DE2F0C10078A06D /* Build configuration list for PBXNativeTarget "MedicatioNeura" */;
 			buildPhases = (
+				FA98A7BBB027D203BCFE9E63 /* [CP] Check Pods Manifest.lock */,
 				41F3D15D1DE2F0C10078A06D /* Sources */,
 				41F3D15E1DE2F0C10078A06D /* Frameworks */,
 				41F3D15F1DE2F0C10078A06D /* Resources */,
+				10791DE15B406B3B104968CF /* [CP] Embed Pods Frameworks */,
+				8268A3F62B5C8D036EDD095A /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -91,13 +184,21 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0810;
-				LastUpgradeCheck = 0810;
+				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = neura;
 				TargetAttributes = {
 					41F3D1601DE2F0C10078A06D = {
 						CreatedOnToolsVersion = 8.1;
-						DevelopmentTeam = B3SVDDVYL4;
-						ProvisioningStyle = Automatic;
+						DevelopmentTeam = UF894MT86P;
+						ProvisioningStyle = Manual;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -124,6 +225,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				41E92C691DE5A002009AC671 /* Login.storyboard in Resources */,
+				4129E0BD1E03F3B90053925E /* SideBar.storyboard in Resources */,
 				41F3D16F1DE2F0C10078A06D /* LaunchScreen.storyboard in Resources */,
 				41F3D16C1DE2F0C10078A06D /* Assets.xcassets in Resources */,
 				41F3D16A1DE2F0C10078A06D /* Main.storyboard in Resources */,
@@ -132,13 +235,67 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		10791DE15B406B3B104968CF /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MedicatioNeura/Pods-MedicatioNeura-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8268A3F62B5C8D036EDD095A /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MedicatioNeura/Pods-MedicatioNeura-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FA98A7BBB027D203BCFE9E63 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		41F3D15D1DE2F0C10078A06D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				41F3D1671DE2F0C10078A06D /* ViewController.swift in Sources */,
+				41F3D1671DE2F0C10078A06D /* MainVC.swift in Sources */,
 				41F3D1651DE2F0C10078A06D /* AppDelegate.swift in Sources */,
+				41E92C6F1DE5B45A009AC671 /* LoginVC.swift in Sources */,
+				41AE5BA21E01838D00A46E7A /* CustomLabel.swift in Sources */,
+				41E92C631DE499E3009AC671 /* Constants.swift in Sources */,
+				4129E0BF1E040B630053925E /* SideBarVC.swift in Sources */,
+				41E92C761DE5E086009AC671 /* NeuraSDKManager.swift in Sources */,
+				41E92C721DE5CB63009AC671 /* CustomButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -182,6 +339,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -231,6 +389,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -257,26 +416,50 @@
 		};
 		41F3D1741DE2F0C10078A06D /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 36C384E5FA930467F93DC4BC /* Pods-MedicatioNeura.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = B3SVDDVYL4;
+				CODE_SIGN_ENTITLEMENTS = MedicatioNeura/MedicatioNeura.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = UF894MT86P;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/MedicatioNeura",
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/Pods/NeuraSDKFramework",
+				);
 				INFOPLIST_FILE = MedicatioNeura/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.MedicatioNeura;
+				PRODUCT_BUNDLE_IDENTIFIER = com.neura.medicationn;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "c10583dc-ff90-4273-9fab-14f3122e3809";
+				PROVISIONING_PROFILE_SPECIFIER = "MedicatioNeura dev";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
 		41F3D1751DE2F0C10078A06D /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B9CDDEC3DFD89468595C9A13 /* Pods-MedicatioNeura.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = B3SVDDVYL4;
+				CODE_SIGN_ENTITLEMENTS = MedicatioNeura/MedicatioNeura.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				DEVELOPMENT_TEAM = UF894MT86P;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/MedicatioNeura",
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/Pods/NeuraSDKFramework",
+				);
 				INFOPLIST_FILE = MedicatioNeura/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.MedicatioNeura;
+				PRODUCT_BUNDLE_IDENTIFIER = com.neura.medicationn;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "c08c2b34-2e55-44df-b524-0411dae4623c";
+				PROVISIONING_PROFILE_SPECIFIER = "MedicatioNeura prod";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
@@ -300,6 +483,7 @@
 				41F3D1751DE2F0C10078A06D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

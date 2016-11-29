@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   type = "0"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MedicatioNeura/AppDelegate.swift"
+            timestampString = "503938023.681906"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "57"
+            endingLineNumber = "57"
+            landmarkName = "application(_:handleActionWithIdentifier:for:withResponseInfo:completionHandler:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "MedicatioNeura.AppDelegate.application (__ObjC.UIApplication, handleActionWithIdentifier : Swift.Optional&lt;Swift.String&gt;, for : __ObjC.UILocalNotification, withResponseInfo : Swift.Dictionary&lt;Swift.AnyHashable, Any&gt;, completionHandler : () -&gt; ()) -&gt; ()"
+                  moduleName = "MedicatioNeura"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/galmirkin/Documents/Neura/MedicatioNeura/MedicatioNeura/AppDelegate.swift"
+                  timestampString = "503933392.173593"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "63"
+                  endingLineNumber = "63"
+                  offsetFromSymbolStart = "80">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "MedicatioNeura.AppDelegate.application (__ObjC.UIApplication, handleActionWithIdentifier : Swift.Optional&lt;Swift.String&gt;, for : __ObjC.UILocalNotification, withResponseInfo : Swift.Dictionary&lt;Swift.AnyHashable, Any&gt;, completionHandler : () -&gt; ()) -&gt; ()"
+                  moduleName = "MedicatioNeura"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/galmirkin/Documents/Neura/MedicatioNeura/MedicatioNeura/AppDelegate.swift"
+                  timestampString = "503933392.174867"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "63"
+                  endingLineNumber = "63"
+                  offsetFromSymbolStart = "164">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MedicatioNeura/AppDelegate.swift"
+            timestampString = "503932395.06537"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "41"
+            endingLineNumber = "41"
+            landmarkName = "application(_:didReceive:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "MedicatioNeura.AppDelegate.application (__ObjC.UIApplication, didReceive : __ObjC.UILocalNotification) -&gt; ()"
+                  moduleName = "MedicatioNeura"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/galmirkin/Documents/Neura/MedicatioNeura/MedicatioNeura/AppDelegate.swift"
+                  timestampString = "503933392.178267"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "42"
+                  endingLineNumber = "42"
+                  offsetFromSymbolStart = "36">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "MedicatioNeura.AppDelegate.application (__ObjC.UIApplication, didReceive : __ObjC.UILocalNotification) -&gt; ()"
+                  moduleName = "MedicatioNeura"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/galmirkin/Documents/Neura/MedicatioNeura/MedicatioNeura/AppDelegate.swift"
+                  timestampString = "503933392.179583"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "42"
+                  endingLineNumber = "42"
+                  offsetFromSymbolStart = "296">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>
