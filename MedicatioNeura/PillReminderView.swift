@@ -45,10 +45,10 @@ class PillReminderView: UIView {
         self.LearningProgressBar.progress = progressValue
         
         self.ProgressView.alpha = 1.0
-        self.TimeImageView.alpha = 0.15
-        self.TimeHeadlineLabel.alpha = 0.15
-        self.TimeSubHeadlineLabel.alpha = 0.15
-        self.TookLabel.alpha = 0.15
-        self.MissedLabel.alpha = 0.15
+        self.TimeImageView.alpha = 0.1
+        self.TimeHeadlineLabel.alpha = 0.1
+        self.TimeSubHeadlineLabel.alpha = 0.1
+        self.TookLabel.alpha = 0.1
+        self.MissedLabel.alpha = 0.1
     }
 }

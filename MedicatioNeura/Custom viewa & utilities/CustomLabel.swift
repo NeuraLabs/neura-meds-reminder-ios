@@ -17,6 +17,13 @@ class CustomLabel: UILabel {
         
     }
     
+    override func layoutSubviews() {
+        self.layer.cornerRadius = self.bounds.height / 2
+        self.layer.borderWidth = 1;
+        self.layer.borderColor = self.textColor.cgColor
+        
+        super.layoutSubviews()
+    }
     /*
     // Only override draw() if you perform custom drawing.
     // An empty implementation adversely affects performance during animation.

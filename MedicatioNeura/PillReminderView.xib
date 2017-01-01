@@ -24,51 +24,73 @@
                     </constraints>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="##TYPE## pills reminder" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="NbB-9C-E7U" userLabel="TimeHeadlineLabel">
-                    <rect key="frame" x="57.5" y="10" width="206" height="33.5"/>
+                    <rect key="frame" x="57.5" y="10" width="206" height="23.5"/>
                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
                     <color key="textColor" red="0.31761622430000003" green="0.31766673919999999" blue="0.31760513779999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="253" verticalCompressionResistancePriority="751" text="Get reminded to take your pills ##TIME##" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Du8-Nb-6OM" userLabel="TimeSubHeadlineLabel">
-                    <rect key="frame" x="57.5" y="48.5" width="252.5" height="16"/>
+                    <rect key="frame" x="57.5" y="38.5" width="252.5" height="16"/>
                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                     <color key="textColor" red="0.42352941179999998" green="0.42352941179999998" blue="0.42352941179999998" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Took" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="imN-Bb-kB6">
-                    <rect key="frame" x="57.5" y="74.5" width="38" height="20.5"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <color key="textColor" red="0.42352941179999998" green="0.42352941179999998" blue="0.42352941179999998" alpha="1" colorSpace="calibratedRGB"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="3Ey-zS-n3h" userLabel="TookDetailsLabel" customClass="CustomLabel" customModule="MedicatioNeura" customModuleProvider="target">
-                    <rect key="frame" x="52" y="105" width="50" height="50"/>
+                <view contentMode="scaleToFill" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="5dl-zx-9sy" userLabel="DetailsView">
+                    <rect key="frame" x="97.5" y="54.5" width="222.5" height="100.5"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Took" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="imN-Bb-kB6">
+                            <rect key="frame" x="20" y="10" width="38" height="20.5"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" red="0.42352941179999998" green="0.42352941179999998" blue="0.42352941179999998" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="3Ey-zS-n3h" userLabel="TookDetailsLabel" customClass="CustomLabel" customModule="MedicatioNeura" customModuleProvider="target">
+                            <rect key="frame" x="14.5" y="50.5" width="50" height="50"/>
+                            <constraints>
+                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="40" id="cZA-EP-JH0"/>
+                                <constraint firstAttribute="width" secondItem="3Ey-zS-n3h" secondAttribute="height" multiplier="1:1" id="phK-Ug-ltE"/>
+                                <constraint firstAttribute="height" relation="lessThanOrEqual" constant="50" id="uuh-ET-JWp"/>
+                                <constraint firstAttribute="width" relation="lessThanOrEqual" constant="50" id="wbv-bI-LJS"/>
+                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40" id="xuc-gO-atv"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" red="0.0" green="0.50196081400000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Missed" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="rGW-MT-Jeh">
+                            <rect key="frame" x="78" y="10" width="55" height="20.5"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" red="0.42352941179999998" green="0.42352941179999998" blue="0.42352941179999998" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="j7u-6O-fWY" userLabel="MissedDetailsLabel" customClass="CustomLabel" customModule="MedicatioNeura" customModuleProvider="target">
+                            <rect key="frame" x="81" y="50.5" width="50" height="50"/>
+                            <constraints>
+                                <constraint firstAttribute="height" relation="lessThanOrEqual" constant="50" id="0Z8-u2-KOt"/>
+                                <constraint firstAttribute="width" secondItem="j7u-6O-fWY" secondAttribute="height" multiplier="1:1" id="49o-5w-Kqx"/>
+                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="40" id="4sK-6c-loY"/>
+                                <constraint firstAttribute="width" relation="lessThanOrEqual" constant="50" id="Rtb-Nb-JSE"/>
+                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40" id="lTk-wa-BVS"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" red="0.23921568630000001" green="0.80784313730000001" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstAttribute="width" secondItem="3Ey-zS-n3h" secondAttribute="height" multiplier="1:1" id="phK-Ug-ltE"/>
-                        <constraint firstAttribute="height" relation="lessThanOrEqual" constant="50" id="uuh-ET-JWp"/>
-                        <constraint firstAttribute="width" relation="lessThanOrEqual" constant="50" id="wbv-bI-LJS"/>
+                        <constraint firstItem="j7u-6O-fWY" firstAttribute="centerX" secondItem="rGW-MT-Jeh" secondAttribute="centerX" id="Cbt-MT-qqX"/>
+                        <constraint firstItem="rGW-MT-Jeh" firstAttribute="centerY" secondItem="imN-Bb-kB6" secondAttribute="centerY" id="MXn-aq-fHX"/>
+                        <constraint firstItem="imN-Bb-kB6" firstAttribute="top" secondItem="5dl-zx-9sy" secondAttribute="top" constant="10" id="MbK-9G-iR6"/>
+                        <constraint firstItem="3Ey-zS-n3h" firstAttribute="top" relation="lessThanOrEqual" secondItem="imN-Bb-kB6" secondAttribute="bottom" constant="20" id="QnC-PQ-tlO"/>
+                        <constraint firstAttribute="bottom" secondItem="3Ey-zS-n3h" secondAttribute="bottom" id="U7b-lR-6sg"/>
+                        <constraint firstItem="3Ey-zS-n3h" firstAttribute="centerX" secondItem="imN-Bb-kB6" secondAttribute="centerX" id="WRG-5R-swq"/>
+                        <constraint firstItem="rGW-MT-Jeh" firstAttribute="leading" secondItem="imN-Bb-kB6" secondAttribute="trailing" constant="20" id="pxM-gQ-HE1"/>
+                        <constraint firstItem="j7u-6O-fWY" firstAttribute="top" relation="lessThanOrEqual" secondItem="rGW-MT-Jeh" secondAttribute="bottom" constant="20" id="sxY-Ph-lyg"/>
+                        <constraint firstAttribute="bottom" secondItem="j7u-6O-fWY" secondAttribute="bottom" id="wfc-h1-aeM"/>
+                        <constraint firstItem="imN-Bb-kB6" firstAttribute="leading" secondItem="5dl-zx-9sy" secondAttribute="leading" constant="20" id="ybX-sm-QXe"/>
                     </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <color key="textColor" red="0.0" green="0.50196081400000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Missed" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="rGW-MT-Jeh">
-                    <rect key="frame" x="160.5" y="74.5" width="55" height="20.5"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <color key="textColor" red="0.42352941179999998" green="0.42352941179999998" blue="0.42352941179999998" alpha="1" colorSpace="calibratedRGB"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="j7u-6O-fWY" userLabel="MissedDetailsLabel" customClass="CustomLabel" customModule="MedicatioNeura" customModuleProvider="target">
-                    <rect key="frame" x="163.5" y="105" width="50" height="50"/>
-                    <constraints>
-                        <constraint firstAttribute="height" relation="lessThanOrEqual" constant="50" id="0Z8-u2-KOt"/>
-                        <constraint firstAttribute="width" secondItem="j7u-6O-fWY" secondAttribute="height" multiplier="1:1" id="49o-5w-Kqx"/>
-                        <constraint firstAttribute="width" relation="lessThanOrEqual" constant="50" id="Rtb-Nb-JSE"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <color key="textColor" red="0.23921568630000001" green="0.80784313730000001" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
-                    <nil key="highlightedColor"/>
-                </label>
+                </view>
                 <view alpha="0.0" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Wis-ss-Wfn" userLabel="ProgressView">
                     <rect key="frame" x="10" y="63" width="300" height="92"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -91,23 +113,17 @@
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="bgk-z4-YYV" firstAttribute="top" secondItem="aSE-tC-PpZ" secondAttribute="top" constant="10" id="25n-et-Bxi"/>
+                <constraint firstAttribute="trailing" secondItem="5dl-zx-9sy" secondAttribute="trailing" id="3LJ-mE-Xgt"/>
                 <constraint firstItem="NbB-9C-E7U" firstAttribute="leading" secondItem="bgk-z4-YYV" secondAttribute="trailing" constant="12" id="7jm-Xs-jbc"/>
-                <constraint firstItem="imN-Bb-kB6" firstAttribute="top" secondItem="Du8-Nb-6OM" secondAttribute="bottom" constant="10" id="9Cj-Ik-0cU"/>
-                <constraint firstItem="imN-Bb-kB6" firstAttribute="leading" secondItem="Du8-Nb-6OM" secondAttribute="leading" id="CAZ-30-JH2"/>
                 <constraint firstItem="Du8-Nb-6OM" firstAttribute="leading" secondItem="NbB-9C-E7U" secondAttribute="leading" id="EWX-ox-OF3"/>
                 <constraint firstItem="Du8-Nb-6OM" firstAttribute="top" secondItem="NbB-9C-E7U" secondAttribute="bottom" constant="5" id="FZC-vi-F0y"/>
-                <constraint firstItem="j7u-6O-fWY" firstAttribute="top" secondItem="rGW-MT-Jeh" secondAttribute="bottom" constant="10" id="IXJ-AR-qAV"/>
-                <constraint firstAttribute="bottom" secondItem="j7u-6O-fWY" secondAttribute="bottom" id="Iz7-Cg-nbo"/>
+                <constraint firstItem="5dl-zx-9sy" firstAttribute="top" secondItem="Du8-Nb-6OM" secondAttribute="bottom" id="PTb-0w-9Kc"/>
                 <constraint firstItem="bgk-z4-YYV" firstAttribute="leading" secondItem="aSE-tC-PpZ" secondAttribute="leading" constant="10" id="SgE-9c-Gf7"/>
-                <constraint firstItem="3Ey-zS-n3h" firstAttribute="centerX" secondItem="imN-Bb-kB6" secondAttribute="centerX" id="Zeg-bI-Wes"/>
+                <constraint firstAttribute="bottom" secondItem="5dl-zx-9sy" secondAttribute="bottom" id="VbE-nt-Vle"/>
                 <constraint firstAttribute="trailing" secondItem="Du8-Nb-6OM" secondAttribute="trailing" constant="10" id="aB6-fy-0fV"/>
-                <constraint firstItem="3Ey-zS-n3h" firstAttribute="top" secondItem="imN-Bb-kB6" secondAttribute="bottom" constant="10" id="dXZ-a1-X5j"/>
-                <constraint firstItem="rGW-MT-Jeh" firstAttribute="top" secondItem="Du8-Nb-6OM" secondAttribute="bottom" constant="10" id="h8x-um-bAG"/>
+                <constraint firstItem="5dl-zx-9sy" firstAttribute="leading" secondItem="Du8-Nb-6OM" secondAttribute="leading" constant="40" id="gx0-IM-Bgn"/>
                 <constraint firstItem="NbB-9C-E7U" firstAttribute="top" secondItem="aSE-tC-PpZ" secondAttribute="top" constant="10" id="n2z-Rj-fpc"/>
-                <constraint firstAttribute="bottom" secondItem="3Ey-zS-n3h" secondAttribute="bottom" id="paa-FX-ReB"/>
                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="NbB-9C-E7U" secondAttribute="trailing" constant="10" id="tIq-oA-hFC"/>
-                <constraint firstItem="rGW-MT-Jeh" firstAttribute="leading" secondItem="imN-Bb-kB6" secondAttribute="trailing" constant="65" id="tzv-d7-nFA"/>
-                <constraint firstItem="j7u-6O-fWY" firstAttribute="centerX" secondItem="rGW-MT-Jeh" secondAttribute="centerX" id="zn2-1B-QxE"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
