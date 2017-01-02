@@ -55,6 +55,24 @@ class MainVC: UIViewController {
         self.EveningView = PillReminderView.instanceFromNib(imageName:"eveningiconsmall", headline: "Evening Pills Reminder", subHeadline: "Get reminded to take your pills when you go to sleep", takenCount: UserDefaults.standard.string(forKey: kEveningTookCount), missedCount: UserDefaults.standard.string(forKey: kEveningMissedCount))
         self.PillBoxView = PillReminderView.instanceFromNib(imageName:"pillboxiconsmall", headline: "Med Box Reminder", subHeadline: "Get reminded to take your pillbox with you when you leave home", takenCount: UserDefaults.standard.string(forKey: kPillboxTookCount), missedCount: UserDefaults.standard.string(forKey: kPillboxMissedCount))
         
+        let borderViewMorning = UIView()
+        borderViewMorning.backgroundColor = UIColor(red: 0.9, green: 0.9, blue: 0.9, alpha: 1.0)
+        borderViewMorning.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([NSLayoutConstraint(item: borderViewMorning, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1, constant: 1)])
+        self.MorningView.addSubview(borderViewMorning)
+        NSLayoutConstraint.activate([NSLayoutConstraint(item: borderViewMorning, attribute: NSLayoutAttribute.bottom, relatedBy: NSLayoutRelation.equal, toItem: self.MorningView, attribute: NSLayoutAttribute.bottom, multiplier: 1, constant: -1)])
+        NSLayoutConstraint.activate([NSLayoutConstraint(item: borderViewMorning, attribute: NSLayoutAttribute.leading, relatedBy: NSLayoutRelation.equal, toItem: self.MorningView, attribute: NSLayoutAttribute.leading, multiplier: 1, constant: 10)])
+        NSLayoutConstraint.activate([NSLayoutConstraint(item: borderViewMorning, attribute: NSLayoutAttribute.trailing, relatedBy: NSLayoutRelation.equal, toItem: self.MorningView, attribute: NSLayoutAttribute.trailing, multiplier: 1, constant: -10)])
+
+        let borderViewEvening = UIView()
+        borderViewEvening.backgroundColor = UIColor(red: 0.9, green: 0.9, blue: 0.9, alpha: 1.0)
+        borderViewEvening.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([NSLayoutConstraint(item: borderViewEvening, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1, constant: 1)])
+        self.EveningView.addSubview(borderViewEvening)
+        NSLayoutConstraint.activate([NSLayoutConstraint(item: borderViewEvening, attribute: NSLayoutAttribute.bottom, relatedBy: NSLayoutRelation.equal, toItem: self.EveningView, attribute: NSLayoutAttribute.bottom, multiplier: 1, constant: -1)])
+        NSLayoutConstraint.activate([NSLayoutConstraint(item: borderViewEvening, attribute: NSLayoutAttribute.leading, relatedBy: NSLayoutRelation.equal, toItem: self.EveningView, attribute: NSLayoutAttribute.leading, multiplier: 1, constant: 10)])
+        NSLayoutConstraint.activate([NSLayoutConstraint(item: borderViewEvening, attribute: NSLayoutAttribute.trailing, relatedBy: NSLayoutRelation.equal, toItem: self.EveningView, attribute: NSLayoutAttribute.trailing, multiplier: 1, constant: -10)])
+
         self.stackView.addArrangedSubview(self.MorningView)
         self.stackView.addArrangedSubview(self.EveningView)
         self.stackView.addArrangedSubview(self.PillBoxView)
