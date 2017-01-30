@@ -17,24 +17,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
-    NeuraSDKManager.manager.setup()
+        NeuraSDKManager.manager.setup()
         self.setInitialVC()
         
         return true
     }
     
-    
     func setInitialVC() {
     
         // if the user is not login show the LoginVC
         if !NeuraSDKManager.manager.IsUserLogin() {
-        let storyboard = UIStoryboard(name: "Login", bundle: nil)
-        let initialViewController = storyboard.instantiateViewController(withIdentifier: "login VC") as! LoginVC
-        self.window?.rootViewController = initialViewController
-        self.window?.makeKeyAndVisible()
+            let storyboard = UIStoryboard(name: "Login", bundle: nil)
+            let initialViewController = storyboard.instantiateViewController(withIdentifier: "login VC") as! LoginVC
+            self.window?.rootViewController = initialViewController
+            self.window?.makeKeyAndVisible()
         }
     }
-    
     
     func application(_ application: UIApplication, didReceive notification: UILocalNotification) {
         
@@ -47,36 +45,30 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         if identifier == kMorningEventIdentifier || identifier == kTakePillboxEventIdentifier || identifier == kEveningEventIdentifier {
             let fireDate = Date() + TimeInterval (15 * 60)
-            NeuraSDKManager.manager.showReminder(identifier: identifier, fireDate:fireDate )
+            NeuraSDKManager.manager.showReminder(identifier: identifier, fireDate:fireDate, repeatInterval: NSCalendar.Unit(rawValue: 0))
         }
     }
     
-    
     func application(_ application: UIApplication, handleActionWithIdentifier identifier: String?, for notification: UILocalNotification, withResponseInfo responseInfo: [AnyHashable : Any], completionHandler: @escaping () -> Void) {
         
-                guard
-                    let actionIndentifier = identifier,
-                    let info = notification.userInfo as? [NSString: NSObject],
-                    let identifier = info["identifier"] as? String
-                    else {
-                        return
-                }
-        
-        
+        guard
+            let actionIndentifier = identifier,
+            let info = notification.userInfo as? [NSString: NSObject],
+            let identifier = info["identifier"] as? String
+            else {
+                return
+        }
         
         if actionIndentifier == kTookActionIdentifier {
-        NeuraSDKManager.manager.addTookCount(identifier: identifier)
+            NeuraSDKManager.manager.addTookCount(identifier: identifier)
             
         } else if actionIndentifier == kLaterActionIdentifier {
             let fireDate = Date() + TimeInterval (15 * 60)
-            NeuraSDKManager.manager.showReminder(identifier: identifier, fireDate:fireDate )
+            NeuraSDKManager.manager.showReminder(identifier: identifier, fireDate:fireDate, repeatInterval: NSCalendar.Unit(rawValue: 0))
         }
      completionHandler()
     }
     
-    
-    
-
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.
@@ -98,7 +90,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
-
-
 }
 

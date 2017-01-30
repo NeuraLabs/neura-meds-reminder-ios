@@ -43,10 +43,16 @@ class MainVC: UIViewController {
     func willEnterForeground() {
         welcomeLabel.text = NeuraSDKManager.manager.greetingMessage()
         
-        setCountLabels()
+        if (self.MorningView == nil) {
+            setCountLabels()
+        }
         
-        if NeuraSDKManager.manager.eveningPillsProgress() <= 2 {
-            self.EveningView.updateView(progressValue: Float(NeuraSDKManager.manager.eveningPillsProgress()) / 2)
+        let learnProgress = NeuraSDKManager.manager.daysFromLogin()
+        if learnProgress < 2 {
+            self.EveningView.updateView(progressValue: Float(learnProgress) / 2.0)
+        }
+        if learnProgress < 5 {
+            self.PillBoxView.updateView(progressValue: Float(learnProgress) / 5.0)
         }
     }
     

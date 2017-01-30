@@ -10,17 +10,13 @@ import Foundation
 import NeuraSDK
 import UserNotifications
 
-
-
 enum EventName : String {
     case eventUserGotUp = "userGotUp"
     case eventUserWokeUp = "userWokeUp"
     case eventUserIsAboutToGoToSleep = "userIsAboutToGoToSleep"
 }
 
-
 class NeuraSDKManager {
-    
     
     /// Singleton
     static let manager = NeuraSDKManager()
@@ -45,11 +41,9 @@ class NeuraSDKManager {
         
     }
     
-    
     func IsUserLogin() -> Bool {
         return UserDefaults.standard.bool(forKey: kIsUserLogin)
     }
-    
     
     func login(viewController: UIViewController?,
                callback: @escaping (_ success: Bool, _ error: String?) -> ()) {
@@ -86,26 +80,23 @@ class NeuraSDKManager {
                                 //if the user is login set pushNotification
                                 NeuraSDKManager.manager.enablePushNotification()
                                 
-                                
-                                
                                 let events = [ "userGotUp",
                                                "userWokeUp",
                                                "userIsAboutToGoToSleep" ] as NSMutableArray
                                 
-                                self.subscribeToEvents(events: events )
                                 callback(true, nil)
+                                self.subscribeToEvents(events: events )
         })
     }
-    
     
     func enablePushNotification() {
         
         NeuraSDKPushNotification.enableAutomaticPushNotification()
         NotificationCenter.default.addObserver(self, selector: #selector(didReceiveRemoteNotification), name: NSNotification.Name(rawValue: kNeuraSDKDidReceiveRemoteNotification), object: nil)
         print(NeuraSDKPushNotification.getDeviceToken())
+        
+        self.setupLocalNotificationsFallback()
     }
-    
-    
     
     @objc func didReceiveRemoteNotification(_ notification: Notification) {
         // Ensure a push for neura event received.
@@ -124,9 +115,7 @@ class NeuraSDKManager {
         guard let eventInfo = pushData["event"] as? [String: NSObject] else { return }
         
         self.showReminderIfRequired(eventInfo)
-        
     }
-    
     
     private func showReminderIfRequired(_ eventInfo: [String: NSObject]) {
         
@@ -137,52 +126,61 @@ class NeuraSDKManager {
                 return
         }
         
+        guard eventName == .eventUserGotUp || eventName == .eventUserWokeUp || eventName == .eventUserIsAboutToGoToSleep else {
+            return
+        }
+        
         let now = Date()
         let calendar = Calendar.current
         var components = calendar.dateComponents([.year, .month, .day, .hour, .minute, .second], from: now)
         
-        let day = components.day //Int(arc4random_uniform(9999))
+        let day = components.day
         
-        
-        // take Pillbox
-        if eventName == .eventUserGotUp || eventName == .eventUserWokeUp {
-            
+        switch eventName {
+        case .eventUserGotUp:
             let takePillboxEventDate = UserDefaults.standard.integer(forKey: kTakePillboxEventDate)
             
-            if !(takePillboxEventDate == day) {
+            if takePillboxEventDate != day {
                 UserDefaults.standard.set(day, forKey: kTakePillboxEventDate)
                 let fireDate = now + TimeInterval (30 * 60)
-                self.showReminder(identifier: kTakePillboxEventIdentifier, fireDate: fireDate)
+                self.showReminder(identifier: kTakePillboxEventIdentifier, fireDate: fireDate, repeatInterval: NSCalendar.Unit(rawValue: 0))
                 self.updateMissedCount(identifier: kTakePillboxEventIdentifier, number: 1)
             }
-            
+        case .eventUserWokeUp:
             // morning event
             let morningEventDate = UserDefaults.standard.integer(forKey: kMorningEventDate)
             
-            if !(morningEventDate == day) {
+            if morningEventDate != day {
                 UserDefaults.standard.set(day, forKey: kMorningEventDate)
-                self.showReminder(identifier: kMorningEventIdentifier, fireDate: now)
+                self.showReminder(identifier: kMorningEventIdentifier, fireDate: now, repeatInterval: NSCalendar.Unit(rawValue: 0))
                 self.updateMissedCount(identifier: kMorningEventIdentifier, number: 1)
             }
-        }
-        
-        // evening event
-        if eventName == .eventUserIsAboutToGoToSleep {
+            break
+        case .eventUserIsAboutToGoToSleep:
             let eveningEventDate = UserDefaults.standard.integer(forKey: kEveningEventDate)
             
-            if !(eveningEventDate == day) {
+            if eveningEventDate != day {
                 UserDefaults.standard.set(day, forKey: kEveningEventDate)
-                self.showReminder(identifier: kEveningEventIdentifier, fireDate: now)
+                self.showReminder(identifier: kEveningEventIdentifier, fireDate: now, repeatInterval: NSCalendar.Unit(rawValue: 0))
                 self.updateMissedCount(identifier: kEveningEventIdentifier, number: 1)
             }
+            break
         }
         UserDefaults.standard.synchronize()
+        self.setupLocalNotificationsFallback()
     }
     
-    
-    
-    private func setupNotificationsSettings(alertTitle: String, alertBody: String, identifier: String, fireDate: Date) {
+    private func setupLocalNotificationsFallback() {
+        UIApplication.shared.cancelAllLocalNotifications()
         
+        let now = Date()
+        let tomorrow = NSCalendar.current.date(byAdding: Calendar.Component.day, value: 1, to: now)
+        let fireDate = NSCalendar.current.date(bySettingHour: 11, minute: 0, second: 0, of: tomorrow!)
+        self.showReminder(identifier: kMorningEventIdentifier, fireDate: fireDate!, repeatInterval: NSCalendar.Unit.day)
+    }
+    
+    private func setupNotificationsSettings(alertTitle: String, alertBody: String, identifier: String, fireDate: Date, repeatInterval: NSCalendar.Unit) {
+    
         let sharedApp = UIApplication.shared
         
         let tookAction = UIMutableUserNotificationAction()
@@ -215,9 +213,9 @@ class NeuraSDKManager {
         notification.fireDate = fireDate
         notification.category = identifier
         notification.userInfo = ["identifier" : identifier]
+        notification.repeatInterval = repeatInterval
         sharedApp.scheduleLocalNotification(notification)
     }
-    
     
     func subscribeToEvents(events: NSMutableArray)   {
         weak var weakSelf = self
@@ -229,7 +227,6 @@ class NeuraSDKManager {
             }
         })
     }
-    
     
     func removeSubscriptions(events: NSMutableArray)   {
         weak var weakSelf = self
@@ -243,7 +240,6 @@ class NeuraSDKManager {
             }
         }
     }
-    
     
     func subscribeToEvent(_ eventName: String, identifier: String, callback: @escaping (_ success: Bool, _ error: String?) -> ()) {
         
@@ -261,7 +257,6 @@ class NeuraSDKManager {
         }
     }
     
-    
     func removeSubscription(_ identifier: String, callback: @escaping (_ success: Bool, _ error: String?) -> ()) {
         
         neuraSDK?.removeSubscription(withIdentifier: identifier) { responseData, error in
@@ -275,16 +270,12 @@ class NeuraSDKManager {
         }
     }
     
-    
-    func eveningPillsProgress() -> Int {
+    func daysFromLogin() -> Int {
         
         let loginDate = UserDefaults.standard.object(forKey: kLoginDate) as! Date
-        let today = NSDate() as Date
-        let calendar = Calendar.current
-        let components = calendar.dateComponents([Calendar.Component.day], from: loginDate, to: today)
+        let components = Calendar.current.dateComponents([Calendar.Component.day], from: loginDate, to: NSDate() as Date)
         return components.day!
     }
-    
     
     func greetingMessage() -> String {
         
@@ -308,88 +299,72 @@ class NeuraSDKManager {
         return currentTimeOfDay
     }
     
-    
     func addTookCount(identifier: String) {
         
-        if identifier == kTakePillboxEventIdentifier {
-            var num = UserDefaults.standard.integer(forKey: kPillboxTookCount)
-            num += 1
-            UserDefaults.standard.set(num, forKey: kPillboxTookCount)
-            self.updateMissedCount(identifier: kTakePillboxEventIdentifier, number: -1)
-            
-        } else if identifier == kMorningEventIdentifier {
-            var num = UserDefaults.standard.integer(forKey: kMorningTookCount)
-            num += 1
-            UserDefaults.standard.set(num, forKey: kMorningTookCount)
-            self.updateMissedCount(identifier: kMorningEventIdentifier, number: -1)
-            
-        } else if identifier == kEveningEventIdentifier {
-            var num = UserDefaults.standard.integer(forKey: kEveningTookCount)
-            num += 1
-            UserDefaults.standard.set(num, forKey: kEveningTookCount)
-            self.updateMissedCount(identifier: kEveningEventIdentifier, number: -1)
+        var tookKey = ""
+        switch identifier {
+        case kTakePillboxEventIdentifier:
+            tookKey = kPillboxMissedCount
+            break
+        case kMorningEventIdentifier:
+            tookKey = kMorningMissedCount
+            break
+        case kEveningEventIdentifier:
+            tookKey = kEveningMissedCount
+            break
+        default:
+            break
         }
+        
+        UserDefaults.standard.set(UserDefaults.standard.integer(forKey: tookKey) + 1, forKey: tookKey)
+        self.updateMissedCount(identifier: identifier, number: -1)
         UserDefaults.standard.synchronize()
     }
-    
     
     func updateMissedCount(identifier: String, number: Int) {
         
-        if identifier == kTakePillboxEventIdentifier {
-            var num = UserDefaults.standard.integer(forKey: kPillboxMissedCount)
-            num += number
-            UserDefaults.standard.set(num, forKey: kPillboxMissedCount)
-            
-        } else if identifier == kMorningEventIdentifier {
-            var num = UserDefaults.standard.integer(forKey: kMorningMissedCount)
-            num += number
-            UserDefaults.standard.set(num, forKey: kMorningMissedCount)
-            
-        } else if identifier == kEveningEventIdentifier {
-            var num = UserDefaults.standard.integer(forKey: kEveningMissedCount)
-            num += number
-            UserDefaults.standard.set(num, forKey: kEveningMissedCount)
+        var missedKey = ""
+        switch identifier {
+        case kTakePillboxEventIdentifier:
+            missedKey = kPillboxMissedCount
+            break
+        case kMorningEventIdentifier:
+            missedKey = kMorningMissedCount
+            break
+        case kEveningEventIdentifier:
+            missedKey = kEveningMissedCount
+            break
+        default:
+            break
         }
+        
+        UserDefaults.standard.set(UserDefaults.standard.integer(forKey: missedKey) + number, forKey: missedKey)
         UserDefaults.standard.synchronize()
     }
     
-    
-    func showReminder(identifier: String, fireDate: Date ) {
+    func showReminder(identifier: String, fireDate: Date, repeatInterval: NSCalendar.Unit) {
+
+        let alertText: (title: String?, body: String?) = self.alertText(identifier: identifier)
         
-        
-        if identifier == kTakePillboxEventIdentifier {
-            
-            let alertBody = NSLocalizedString("Don't forget to take your pillbox!", comment: "Don't forget to take your pillbox!")
-            let alertTitle = NSLocalizedString("Hi", comment: "Hi")
-            
-            self.setupNotificationsSettings(alertTitle: alertTitle,
-                                            alertBody: alertBody,
-                                            identifier: kTakePillboxEventIdentifier,
-                                            fireDate: fireDate)
-        }
-        
-        
-        if identifier == kMorningEventIdentifier {
-            let alertBody = NSLocalizedString("Time for your morning pills :)", comment: "Time for your morning pills :)")
-            let alertTitle = NSLocalizedString("Good morning", comment: "Good morning")
-            
-            self.setupNotificationsSettings(alertTitle: alertTitle,
-                                            alertBody: alertBody,
-                                            identifier:kMorningEventIdentifier,
-                                            fireDate:fireDate)
-        }
-        
-        if identifier == kEveningEventIdentifier {
-            let alertBody = NSLocalizedString("Time for your evening pills", comment: "Time for your evening pills")
-            let alertTitle = NSLocalizedString("Good evening", comment: "Good evening")
-            self.setupNotificationsSettings(alertTitle: alertTitle,
-                                            alertBody: alertBody,
-                                            identifier:kEveningEventIdentifier,
-                                            fireDate:fireDate)
+        if (alertText.0 != nil) {
+            self.setupNotificationsSettings(alertTitle: alertText.title!,
+                                            alertBody: alertText.body!,
+                                            identifier: identifier,
+                                            fireDate: fireDate,
+                                            repeatInterval: repeatInterval)
         }
     }
     
+    private func alertText(identifier: String) -> (title: String?, body: String?) {
+        switch identifier {
+        case kTakePillboxEventIdentifier:
+            return(title: NSLocalizedString("Hi", comment: "Hi"), body: NSLocalizedString("Don't forget to take your pillbox!", comment: "Don't forget to take your pillbox!"))
+        case kMorningEventIdentifier:
+            return(title: NSLocalizedString("Good morning", comment: "Good morning"), body: NSLocalizedString("Time for your morning pills :)", comment: "Time for your morning pills :)"))
+        case kEveningEventIdentifier:
+            return(title: NSLocalizedString("Good evening", comment: "Good evening"), body: NSLocalizedString("Time for your evening pills", comment: "Time for your evening pills"))
+        default:
+            return(title: nil, body: nil); //only show remiders for specific identifiers
+        }
+    }
 }
-
-
-

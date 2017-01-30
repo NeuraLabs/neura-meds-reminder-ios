@@ -17,29 +17,26 @@ class LoginVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.loginButton.layer.cornerRadius = self.loginButton.bounds.height / 2
-        
     }
-    
-    
     
     @IBAction func loginButtonPressed(_ sender: UIButton) {
         
-        NeuraSDKManager.manager.login(viewController: self, callback: {    success, error in
+        NeuraSDKManager.manager.login(viewController: self, callback: { success, error in
         
             if success == false {
-//                self.showError(error!)
+                self.showError(error!)
                 print(error!)
                 return
             }
             
-            if NeuraSDKManager.manager.IsUserLogin() {
-                let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                let initialViewController = storyboard.instantiateViewController(withIdentifier: "main") as! MainVC
-                UIApplication.shared.keyWindow?.rootViewController = initialViewController
-                UIApplication.shared.keyWindow?.makeKeyAndVisible()
+            DispatchQueue.main.async {
+                if NeuraSDKManager.manager.IsUserLogin() {
+                    let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                    let initialViewController = storyboard.instantiateViewController(withIdentifier: "main") as! MainVC
+                    UIApplication.shared.keyWindow?.rootViewController = initialViewController
+                    UIApplication.shared.keyWindow?.makeKeyAndVisible()
+                }
             }
-            
         })
     }
     

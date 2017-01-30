@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16C68" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
-    <device id="retina3_5" orientation="portrait">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -18,20 +18,20 @@
                         <viewControllerLayoutGuide type="bottom" id="T12-j9-bVL"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="QZO-fg-D4W">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xm8-hK-ZNb" userLabel="TitleView">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="141"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="141"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="100" verticalHuggingPriority="100" horizontalCompressionResistancePriority="100" verticalCompressionResistancePriority="100" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="FgQ-e2-jHE">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="141"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="141"/>
                                     </imageView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RlF-Pb-Toj">
-                                        <rect key="frame" x="10" y="25" width="300" height="67"/>
+                                        <rect key="frame" x="10" y="25" width="394" height="67"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="NEURA MEDS REMINDER" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="mqU-2o-ysA">
-                                                <rect key="frame" x="8" y="18" width="284" height="31"/>
+                                                <rect key="frame" x="55.666666666666686" y="18" width="283.66666666666663" height="31"/>
                                                 <color key="backgroundColor" red="0.12549019610000001" green="0.2274509804" blue="0.30588235289999999" alpha="1" colorSpace="calibratedRGB"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -47,7 +47,7 @@
                                         </constraints>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="WELCOME" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="WOR-SS-JUV">
-                                        <rect key="frame" x="110.5" y="107" width="99.5" height="24"/>
+                                        <rect key="frame" x="158" y="107" width="99.333333333333314" height="24"/>
                                         <rect key="contentStretch" x="0.0" y="0.0" width="0.0" height="0.0"/>
                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
                                         <color key="textColor" red="0.12549019610000001" green="0.2274509804" blue="0.30588235289999999" alpha="1" colorSpace="calibratedRGB"/>
@@ -70,7 +70,7 @@
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gLX-YK-RQh" customClass="CustomButton" customModule="MedicatioNeura" customModuleProvider="target">
-                                <rect key="frame" x="47.5" y="392" width="225" height="40"/>
+                                <rect key="frame" x="94.666666666666686" y="648" width="225" height="40"/>
                                 <color key="backgroundColor" red="0.23921568630000001" green="0.80784313730000001" blue="0.96470588239999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="nvW-d5-7u4"/>
@@ -86,22 +86,22 @@
                                 </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="1000" distribution="fillEqually" spacing="45" translatesAutoresizingMaskIntoConstraints="NO" id="K7f-mv-pMB">
-                                <rect key="frame" x="10" y="171" width="300" height="70"/>
+                                <rect key="frame" x="10" y="171" width="394" height="101.33333333333331"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="morningicon" translatesAutoresizingMaskIntoConstraints="NO" id="G1g-We-TcO">
-                                        <rect key="frame" x="0.0" y="0.0" width="70" height="70"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="101.33333333333333" height="101.33333333333331"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="G1g-We-TcO" secondAttribute="height" id="HSC-CW-OlE"/>
                                         </constraints>
                                     </imageView>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="eveningicon" translatesAutoresizingMaskIntoConstraints="NO" id="Hwn-7o-YU3">
-                                        <rect key="frame" x="115" y="0.0" width="70" height="70"/>
+                                        <rect key="frame" x="146.33333333333331" y="0.0" width="101.33333333333334" height="101.33333333333331"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="Hwn-7o-YU3" secondAttribute="height" multiplier="1:1" id="XHs-wK-omx"/>
                                         </constraints>
                                     </imageView>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pillboxicon" translatesAutoresizingMaskIntoConstraints="NO" id="luv-l3-X5t">
-                                        <rect key="frame" x="230" y="0.0" width="70" height="70"/>
+                                        <rect key="frame" x="292.66666666666674" y="0.0" width="101.33333333333331" height="101.33333333333331"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="luv-l3-X5t" secondAttribute="height" multiplier="1:1" id="wde-YF-R8P"/>
                                         </constraints>
@@ -109,10 +109,10 @@
                                 </subviews>
                             </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="qzE-px-7cl">
-                                <rect key="frame" x="35" y="271" width="250" height="111"/>
-                                <string key="text">This app will show you some of Neura’s capabilities for usecases specifically tailored to Medication adherence apps.
+                                <rect key="frame" x="35" y="302.33333333333337" width="344" height="215.00000000000011"/>
+                                <string key="text">Try for yourself how the Neura SDK and Medication Reminder Addon can increase medication adherence in your app.
 
-</string>
+With Neura, your app can send medication reminders based on your users’ events (when they woke up, before they go to sleep, and more).</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -145,8 +145,8 @@
     </scenes>
     <resources>
         <image name="background" width="414" height="207"/>
-        <image name="eveningicon" width="80" height="80"/>
-        <image name="morningicon" width="80" height="80"/>
-        <image name="pillboxicon" width="80" height="80"/>
+        <image name="eveningicon" width="72" height="72"/>
+        <image name="morningicon" width="72" height="72"/>
+        <image name="pillboxicon" width="72" height="72"/>
     </resources>
 </document>
