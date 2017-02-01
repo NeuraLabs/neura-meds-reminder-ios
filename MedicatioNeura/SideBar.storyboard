@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D12b" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="WXO-g1-oXq">
-    <device id="retina4_7" orientation="portrait">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="WXO-g1-oXq">
+    <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -17,48 +18,41 @@
                         <viewControllerLayoutGuide type="bottom" id="hDS-5X-Ghq"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="fk4-nR-IfS">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="WHEN YOUR MEDICAL ADHERENCE APP WORKS WITH NEURA - IT JUST WORKS." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6r2-l7-40r">
-                                <rect key="frame" x="100" y="63" width="264" height="103"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="264" id="NhC-B2-SGu"/>
-                                    <constraint firstAttribute="height" constant="103" id="gxi-KV-VNE"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="whitelogosmall" translatesAutoresizingMaskIntoConstraints="NO" id="rXc-wb-Xac">
-                                <rect key="frame" x="100" y="30" width="20" height="22"/>
+                                <rect key="frame" x="120" y="20" width="20" height="22"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="22" id="3eJ-JI-tMr"/>
                                     <constraint firstAttribute="width" constant="20" id="GSm-Qc-JEI"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y9y-pS-8nT">
-                                <rect key="frame" x="100" y="174" width="252" height="218"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="252" id="RGZ-lX-njh"/>
-                                    <constraint firstAttribute="height" constant="218" id="j1F-mH-7Zw"/>
-                                </constraints>
-                                <string key="text">Perfectly time your engagement with each user and help them at the exact moment they need it.
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="752" text="WHEN YOUR MEDICAL ADHERENCE APP WORKS WITH NEURA - IT JUST WORKS." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6r2-l7-40r" userLabel="Headline">
+                                <rect key="frame" x="120" y="52" width="264" height="95.666666666666657"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="250" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Y9y-pS-8nT" userLabel="Content">
+                                <rect key="frame" x="120" y="157.66666666666663" width="264" height="258"/>
+                                <string key="text">This demo app shows how Neura sends effective medication reminders based on moments in the user’s day.
 
-Integrating Neura into your app takes less than an hour. Request a link to the SDK and get started now.</string>
+Perfectly timing your engagement with each user allows you to help them at the exact moment they need it.
+
+Integrating Neura into your app takes less than an hour.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lAm-v5-UDm" customClass="CustomButton" customModule="MedicatioNeura" customModuleProvider="target">
-                                <rect key="frame" x="115" y="465" width="223" height="45"/>
-                                <color key="backgroundColor" red="0.0" green="0.79607843137254897" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lAm-v5-UDm" userLabel="Get started button" customClass="CustomButton" customModule="MedicatioNeura" customModuleProvider="target">
+                                <rect key="frame" x="120" y="425.66666666666669" width="264" height="44"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="223" id="AO5-tE-oFd"/>
-                                    <constraint firstAttribute="height" constant="45" id="ibj-WS-zDr"/>
+                                    <constraint firstAttribute="height" constant="44" id="onQ-QB-SFb"/>
                                 </constraints>
-                                <state key="normal" title="GET STARTED WITH NEURA">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <state key="normal" title="Get started with Neura">
+                                    <color key="titleColor" red="0.0" green="0.79607843140000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
                                     <action selector="shareButtonPressed:" destination="WXO-g1-oXq" eventType="touchUpInside" id="Ct8-1H-xqv"/>
@@ -68,14 +62,18 @@ Integrating Neura into your app takes less than an hour. Request a link to the S
                         <color key="backgroundColor" red="0.0" green="0.79607843137254897" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <gestureRecognizers/>
                         <constraints>
-                            <constraint firstItem="6r2-l7-40r" firstAttribute="leading" secondItem="fk4-nR-IfS" secondAttribute="leading" constant="100" id="1zv-ag-uzc"/>
-                            <constraint firstItem="lAm-v5-UDm" firstAttribute="centerX" secondItem="Y9y-pS-8nT" secondAttribute="centerX" id="21w-RV-ua8"/>
-                            <constraint firstItem="6r2-l7-40r" firstAttribute="top" secondItem="rXc-wb-Xac" secondAttribute="bottom" constant="11" id="90w-Ae-IIc"/>
-                            <constraint firstAttribute="bottom" secondItem="lAm-v5-UDm" secondAttribute="bottom" constant="157" id="BXa-Wl-5ub"/>
-                            <constraint firstItem="Y9y-pS-8nT" firstAttribute="leading" secondItem="fk4-nR-IfS" secondAttribute="leading" constant="100" id="CVt-Jn-OMC"/>
-                            <constraint firstItem="Y9y-pS-8nT" firstAttribute="top" secondItem="6r2-l7-40r" secondAttribute="bottom" constant="8" id="vRb-10-tV3"/>
+                            <constraint firstItem="Y9y-pS-8nT" firstAttribute="leading" secondItem="6r2-l7-40r" secondAttribute="leading" id="5Rh-O4-Ifk"/>
+                            <constraint firstItem="hDS-5X-Ghq" firstAttribute="top" secondItem="lAm-v5-UDm" secondAttribute="bottom" priority="251" constant="50" id="7j4-dX-KhM"/>
+                            <constraint firstItem="6r2-l7-40r" firstAttribute="top" secondItem="rXc-wb-Xac" secondAttribute="bottom" constant="10" id="90w-Ae-IIc"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="6r2-l7-40r" secondAttribute="trailing" constant="10" id="Ng0-Cm-3oh"/>
+                            <constraint firstItem="Y9y-pS-8nT" firstAttribute="top" secondItem="6r2-l7-40r" secondAttribute="bottom" constant="10" id="SBO-mC-DtX"/>
+                            <constraint firstItem="rXc-wb-Xac" firstAttribute="leading" secondItem="fk4-nR-IfS" secondAttribute="leadingMargin" constant="100" id="T30-3W-jV5"/>
+                            <constraint firstItem="lAm-v5-UDm" firstAttribute="trailing" secondItem="Y9y-pS-8nT" secondAttribute="trailing" id="ULC-sS-Oqt"/>
+                            <constraint firstItem="lAm-v5-UDm" firstAttribute="top" secondItem="Y9y-pS-8nT" secondAttribute="bottom" constant="10" id="g6B-ok-wOZ"/>
+                            <constraint firstItem="Y9y-pS-8nT" firstAttribute="trailing" secondItem="6r2-l7-40r" secondAttribute="trailing" id="kuD-8J-whV"/>
+                            <constraint firstItem="lAm-v5-UDm" firstAttribute="leading" secondItem="Y9y-pS-8nT" secondAttribute="leading" id="qQR-fc-AbJ"/>
                             <constraint firstItem="6r2-l7-40r" firstAttribute="leading" secondItem="rXc-wb-Xac" secondAttribute="leading" id="vcO-bn-x6G"/>
-                            <constraint firstItem="rXc-wb-Xac" firstAttribute="top" secondItem="fk4-nR-IfS" secondAttribute="top" constant="30" id="xvf-fp-AfJ"/>
+                            <constraint firstItem="rXc-wb-Xac" firstAttribute="top" secondItem="fk4-nR-IfS" secondAttribute="top" constant="20" id="xvf-fp-AfJ"/>
                         </constraints>
                         <connections>
                             <outletCollection property="gestureRecognizers" destination="BVX-as-8bn" appends="YES" id="BNp-G4-TWz"/>
@@ -88,7 +86,7 @@ Integrating Neura into your app takes less than an hour. Request a link to the S
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0RR-eG-yZ9" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <swipeGestureRecognizer direction="right" id="BVX-as-8bn"/>
             </objects>
-            <point key="canvasLocation" x="117.59999999999999" y="51.724137931034484"/>
+            <point key="canvasLocation" x="115.94202898550725" y="50.54347826086957"/>
         </scene>
     </scenes>
     <resources>

@@ -12,10 +12,6 @@ class CustomButton: UIButton {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.layer.cornerRadius = self.bounds.height / 2
-        self.layer.shadowColor = UIColor.black.cgColor
-        self.layer.shadowOffset = CGSize(width: 0, height: 2)
-        self.layer.shadowRadius = 1
-        self.layer.shadowOpacity = 0.5
+        self.layer.cornerRadius = self.bounds.height / 4
     }
 }

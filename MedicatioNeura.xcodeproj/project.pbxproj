@@ -21,6 +21,8 @@
 		41F3D16A1DE2F0C10078A06D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 41F3D1681DE2F0C10078A06D /* Main.storyboard */; };
 		41F3D16C1DE2F0C10078A06D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 41F3D16B1DE2F0C10078A06D /* Assets.xcassets */; };
 		41F3D16F1DE2F0C10078A06D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 41F3D16D1DE2F0C10078A06D /* LaunchScreen.storyboard */; };
+		5DF456361E13FD5F004443F2 /* PillReminderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DF456351E13FD5F004443F2 /* PillReminderView.xib */; };
+		5DF456381E151EB2004443F2 /* PillReminderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DF456371E151EB2004443F2 /* PillReminderView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,6 +43,8 @@
 		41F3D16B1DE2F0C10078A06D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		41F3D16E1DE2F0C10078A06D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		41F3D1701DE2F0C10078A06D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5DF456351E13FD5F004443F2 /* PillReminderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PillReminderView.xib; sourceTree = "<group>"; };
+		5DF456371E151EB2004443F2 /* PillReminderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PillReminderView.swift; sourceTree = "<group>"; };
 		B9CDDEC3DFD89468595C9A13 /* Pods-MedicatioNeura.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MedicatioNeura.release.xcconfig"; path = "Pods/Target Support Files/Pods-MedicatioNeura/Pods-MedicatioNeura.release.xcconfig"; sourceTree = "<group>"; };
 		E9824156CFB4A2A26BCD4216 /* Pods_MedicatioNeura.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MedicatioNeura.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -71,6 +75,8 @@
 			children = (
 				41F3D1681DE2F0C10078A06D /* Main.storyboard */,
 				41F3D1661DE2F0C10078A06D /* MainVC.swift */,
+				5DF456351E13FD5F004443F2 /* PillReminderView.xib */,
+				5DF456371E151EB2004443F2 /* PillReminderView.swift */,
 			);
 			name = "Main View Controller";
 			sourceTree = "<group>";
@@ -189,8 +195,7 @@
 				TargetAttributes = {
 					41F3D1601DE2F0C10078A06D = {
 						CreatedOnToolsVersion = 8.1;
-						DevelopmentTeam = UF894MT86P;
-						ProvisioningStyle = Manual;
+						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -230,6 +235,7 @@
 				41F3D16F1DE2F0C10078A06D /* LaunchScreen.storyboard in Resources */,
 				41F3D16C1DE2F0C10078A06D /* Assets.xcassets in Resources */,
 				41F3D16A1DE2F0C10078A06D /* Main.storyboard in Resources */,
+				5DF456361E13FD5F004443F2 /* PillReminderView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -278,7 +284,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -293,6 +299,7 @@
 				41E92C6F1DE5B45A009AC671 /* LoginVC.swift in Sources */,
 				41AE5BA21E01838D00A46E7A /* CustomLabel.swift in Sources */,
 				41E92C631DE499E3009AC671 /* Constants.swift in Sources */,
+				5DF456381E151EB2004443F2 /* PillReminderView.swift in Sources */,
 				4129E0BF1E040B630053925E /* SideBarVC.swift in Sources */,
 				41E92C761DE5E086009AC671 /* NeuraSDKManager.swift in Sources */,
 				41E92C721DE5CB63009AC671 /* CustomButton.swift in Sources */,
@@ -421,7 +428,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = MedicatioNeura/MedicatioNeura.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = UF894MT86P;
+				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/MedicatioNeura",
@@ -433,8 +440,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.neura.medicationn;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "c10583dc-ff90-4273-9fab-14f3122e3809";
-				PROVISIONING_PROFILE_SPECIFIER = "MedicatioNeura dev";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -445,8 +452,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = MedicatioNeura/MedicatioNeura.entitlements;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				DEVELOPMENT_TEAM = UF894MT86P;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/MedicatioNeura",
@@ -458,8 +465,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.neura.medicationn;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "c08c2b34-2e55-44df-b524-0411dae4623c";
-				PROVISIONING_PROFILE_SPECIFIER = "MedicatioNeura prod";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
