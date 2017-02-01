@@ -45,7 +45,7 @@ class MainVC: UIViewController, MainVCProtocol {
     }
     
     func willEnterForeground() {
-        welcomeLabel.text = NeuraSDKManager.manager.greetingMessage()
+        welcomeLabel.text = self.greetingMessage()
         
         if (self.MorningView == nil) {
             setCountLabels()
@@ -89,11 +89,15 @@ class MainVC: UIViewController, MainVCProtocol {
         return true
     }
     
+    /**
+     Set up the views inside the stackView.
+     */
     func setCountLabels() {
         self.MorningView = PillReminderView.instanceFromNib(imageName:"morningiconsmall", headline: "Morning Pills Reminder", subHeadline: "Get reminded to take your pills when you wake up", takenCount: UserDefaults.standard.string(forKey: kMorningTookCount), missedCount: UserDefaults.standard.string(forKey: kMorningMissedCount))
         self.EveningView = PillReminderView.instanceFromNib(imageName:"eveningiconsmall", headline: "Evening Pills Reminder", subHeadline: "Get reminded to take your pills when you go to sleep", takenCount: UserDefaults.standard.string(forKey: kEveningTookCount), missedCount: UserDefaults.standard.string(forKey: kEveningMissedCount))
         self.PillBoxView = PillReminderView.instanceFromNib(imageName:"pillboxiconsmall", headline: "Med Box Reminder", subHeadline: "Get reminded to take your pillbox with you when you leave home", takenCount: UserDefaults.standard.string(forKey: kPillboxTookCount), missedCount: UserDefaults.standard.string(forKey: kPillboxMissedCount))
         
+        // setup the 2 borders between the views in the stackView
         let borderViewMorning = UIView()
         borderViewMorning.backgroundColor = UIColor(red: 0.9, green: 0.9, blue: 0.9, alpha: 1.0)
         borderViewMorning.translatesAutoresizingMaskIntoConstraints = false
@@ -140,7 +144,7 @@ class MainVC: UIViewController, MainVCProtocol {
         }
     }
     
-    //MARK: IBAction Functions
+//MARK: - IBAction Functions
     @IBAction func showSideBarButtonPressed(_ sender: Any) {
         self.toggleSideBar()
     }
@@ -149,6 +153,29 @@ class MainVC: UIViewController, MainVCProtocol {
         if self.isSideBarRevealed() {
             self.toggleSideBar()
         }
+    }
+
+//MARK: - private Functions
+    private func greetingMessage() -> String {
+        
+        let cal = NSCalendar.current
+        let comps = cal.component(.hour, from: Date())
+        let hour = comps.hashValue
+        
+        var currentTimeOfDay = ""
+        switch hour {
+        case 6 ... 12:
+            currentTimeOfDay = NSLocalizedString("Good morning", comment: "Good morning")
+        case 12 ... 18:
+            currentTimeOfDay = NSLocalizedString("Good afternoon", comment: "Good afternoon")
+        case 18 ... 24:
+            currentTimeOfDay = NSLocalizedString("Good evening", comment: "Good evening")
+        case 00 ... 06:
+            currentTimeOfDay = NSLocalizedString("Good night", comment: "Good night")
+        default:
+            currentTimeOfDay = NSLocalizedString("Welcome", comment: "Welcome")
+        }
+        return currentTimeOfDay
     }
 }
 

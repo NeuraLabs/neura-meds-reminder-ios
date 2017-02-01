@@ -6,6 +6,9 @@
 //  Copyright © 2016 neura. All rights reserved.
 //
 
+/**
+ NeuraSDKManager class is a wrapper for NeuraSDK. It enables a central location that handles all med adherence needs in a single location
+ */
 import Foundation
 import NeuraSDK
 import UserNotifications
@@ -21,10 +24,7 @@ class NeuraSDKManager {
     /// Singleton
     static let manager = NeuraSDKManager()
     
-    // MARK: - Private vars
     weak private(set) var neuraSDK: NeuraSDK? = nil
-    
-    
     static var appUID = "9f2797dd7ccff57076d41478d734f18728d7d83a6d772aa6462e2a2bdaa7c9dc"
     static  var appSecret = "7019b20dbe40eeb42a0d27263d4de99c379fcf6b3f7c04e161f7740aa7fca86b"
     
@@ -38,7 +38,6 @@ class NeuraSDKManager {
         if NeuraSDKManager.manager.IsUserLogin() {
             NeuraSDKManager.manager.enablePushNotification()
         }
-        
     }
     
     func IsUserLogin() -> Bool {
@@ -51,13 +50,10 @@ class NeuraSDKManager {
          Specify your permissions array in an NSArray. These can be found in the the developer
          console under "Permissions."
          */
+        let permissions = [ "sleepingHabits"]
         
-        let permissions = [ "userGotUp",
-                            "userWokeUp",
-                            "userIsAboutToGoToSleep" ]
-        
-        
-        /*This logs the user in. In this case, we're saving a bool to userDefaults to indicate that the user is logged in.
+        /*
+         This logs the user in. In this case, we're saving a bool to userDefaults to indicate that the user is logged in.
          Your implementation may be different
          */
         neuraSDK?.authenticate(withPermissions: permissions,
@@ -84,7 +80,7 @@ class NeuraSDKManager {
                                                "userWokeUp",
                                                "userIsAboutToGoToSleep" ] as NSMutableArray
                                 
-                                self.subscribeToEvents(events: events)
+                                NeuraSDKManager.manager.subscribeToEvents(events: events)
                                 callback(true, nil)
         })
     }
@@ -98,6 +94,10 @@ class NeuraSDKManager {
         self.setupLocalNotificationsFallback()
     }
     
+    /**
+     Neura push to SDK feature receives the silent push from Neura's server and post a notification "NeuraSDKDidReceiveRemoteNotification".
+     This function is the selector that handles the content of the silent push and displays relevant notifications
+     */
     @objc func didReceiveRemoteNotification(_ notification: Notification) {
         // Ensure a push for neura event received.
         guard
@@ -115,6 +115,78 @@ class NeuraSDKManager {
         guard let eventInfo = pushData["event"] as? [String: NSObject] else { return }
         
         self.showReminderIfRequired(eventInfo)
+    }
+    
+    func daysFromLogin() -> Int {
+        
+        let loginDate = UserDefaults.standard.object(forKey: kLoginDate) as! Date
+        let components = Calendar.current.dateComponents([Calendar.Component.day], from: loginDate, to: NSDate() as Date)
+        return components.day!
+    }
+    
+    func addTookCount(identifier: String) {
+        
+        var tookKey = ""
+        switch identifier {
+        case kTakePillboxEventIdentifier:
+            tookKey = kPillboxMissedCount
+            break
+        case kMorningEventIdentifier:
+            tookKey = kMorningMissedCount
+            break
+        case kEveningEventIdentifier:
+            tookKey = kEveningMissedCount
+            break
+        default:
+            break
+        }
+        
+        UserDefaults.standard.set(UserDefaults.standard.integer(forKey: tookKey) + 1, forKey: tookKey)
+        self.updateMissedCount(identifier: identifier, number: -1)
+        UserDefaults.standard.synchronize()
+    }
+    
+    func showReminder(identifier: String, fireDate: Date, repeatInterval: NSCalendar.Unit) {
+
+        let alertText: (title: String?, body: String?) = self.alertText(identifier: identifier)
+        
+        if (alertText.0 != nil) {
+            self.setupNotificationsSettings(alertTitle: alertText.title!,
+                                            alertBody: alertText.body!,
+                                            identifier: identifier,
+                                            fireDate: fireDate,
+                                            repeatInterval: repeatInterval)
+        }
+    }
+
+// MARK: - private functions
+    
+    private func subscribeToEvents(events: NSMutableArray)   {
+        weak var weakSelf = self
+        NeuraSDKManager.manager.subscribeToEvent(events.firstObject as! String,identifier: events.firstObject as! String, callback:
+                                                    { (success, error) in
+                                                        events.removeObject(at: 0)
+                                                        if events.count > 0 {
+                                                            weakSelf?.subscribeToEvents(events: events)
+                                                        }
+                                                    }
+                                                )
+    }
+    
+    private func subscribeToEvent(_ eventName: String, identifier: String, callback: @escaping (_ success: Bool, _ error: String?) -> ()) {
+        
+        neuraSDK?.subscribe(toEvent: eventName,
+                            identifier: identifier,
+                            webHookID: nil) { (responseData, error) in
+                                
+                                print("Subscribe to event:\(eventName) responseData = \(responseData) error = \(error) ")
+                                
+                                guard error == nil else {
+                                    callback(false, error)
+                                    return
+                                }
+                                callback(true, nil)
+                            }
     }
     
     private func showReminderIfRequired(_ eventInfo: [String: NSObject]) {
@@ -153,7 +225,7 @@ class NeuraSDKManager {
             if morningEventDate != day {
                 self.handlePushEvent(eventDay: (day: day!, eventDateUserDefaultsKey: kMorningEventDate), eventIdentifier: kMorningEventIdentifier, fireDate: now)
             }
-        case .eventUserIsAboutToGoToSleep: // handles evening pills 
+        case .eventUserIsAboutToGoToSleep: // handles evening pills
             let eveningEventDate = UserDefaults.standard.integer(forKey: kEveningEventDate)
             
             if eveningEventDate != day {
@@ -176,12 +248,12 @@ class NeuraSDKManager {
         let now = Date()
         let tomorrow = NSCalendar.current.date(byAdding: Calendar.Component.day, value: 1, to: now)
         let fireDate = NSCalendar.current.date(bySettingHour: 11, minute: 0, second: 0, of: tomorrow!)
-
+        
         self.showReminder(identifier: kMorningEventIdentifier, fireDate: fireDate!, repeatInterval: NSCalendar.Unit.day)
     }
     
     private func setupNotificationsSettings(alertTitle: String, alertBody: String, identifier: String, fireDate: Date, repeatInterval: NSCalendar.Unit) {
-    
+        
         let sharedApp = UIApplication.shared
         
         let tookAction = UIMutableUserNotificationAction()
@@ -207,7 +279,6 @@ class NeuraSDKManager {
         let notificationSettings = UIUserNotificationSettings(types: [.sound, .alert, .badge], categories: [actionCategory])
         sharedApp.registerUserNotificationSettings(notificationSettings)
         
-        
         let notification = UILocalNotification()
         notification.alertTitle = alertTitle
         notification.alertBody = alertBody
@@ -219,111 +290,7 @@ class NeuraSDKManager {
         sharedApp.scheduleLocalNotification(notification)
     }
     
-    func subscribeToEvents(events: NSMutableArray)   {
-        weak var weakSelf = self
-        NeuraSDKManager.manager.subscribeToEvent(events.firstObject as! String,identifier: events.firstObject as! String, callback:{ (success, error) in
-            events.removeObject(at: 0)
-            
-            if events.count > 0 {
-                weakSelf?.subscribeToEvents(events: events)
-            }
-        })
-    }
-    
-    func removeSubscriptions(events: NSMutableArray)   {
-        weak var weakSelf = self
-        NeuraSDKManager.manager.removeSubscription(events.firstObject as! String)  {
-            success, error in
-            
-            events.removeObject(at: 0)
-            
-            if events.count > 0 {
-                weakSelf?.removeSubscriptions(events: events)
-            }
-        }
-    }
-    
-    func subscribeToEvent(_ eventName: String, identifier: String, callback: @escaping (_ success: Bool, _ error: String?) -> ()) {
-        
-        neuraSDK?.subscribe(toEvent: eventName,
-                            identifier: identifier,
-                            webHookID: nil) { (responseData, error) in
-                                
-                                print("Subscribe to event:\(eventName) responseData = \(responseData) error = \(error) ")
-                                
-                                guard error == nil else {
-                                    callback(false, error)
-                                    return
-                                }
-                                callback(true, nil)
-        }
-    }
-    
-    func removeSubscription(_ identifier: String, callback: @escaping (_ success: Bool, _ error: String?) -> ()) {
-        
-        neuraSDK?.removeSubscription(withIdentifier: identifier) { responseData, error in
-            
-            print("Remove subscription identifier:\(identifier) = \(responseData) error = \(error) ")
-            guard error == nil else {
-                callback(false, error)
-                return
-            }
-            callback(true, nil)
-        }
-    }
-    
-    func daysFromLogin() -> Int {
-        
-        let loginDate = UserDefaults.standard.object(forKey: kLoginDate) as! Date
-        let components = Calendar.current.dateComponents([Calendar.Component.day], from: loginDate, to: NSDate() as Date)
-        return components.day!
-    }
-    
-    func greetingMessage() -> String {
-        
-        let cal = NSCalendar.current
-        let comps = cal.component(.hour, from: Date())
-        let hour = comps.hashValue
-        
-        var currentTimeOfDay = ""
-        switch hour {
-        case 6 ... 12:
-            currentTimeOfDay = NSLocalizedString("Good morning", comment: "Good morning")
-        case 12 ... 18:
-            currentTimeOfDay = NSLocalizedString("Good afternoon", comment: "Good afternoon")
-        case 18 ... 24:
-            currentTimeOfDay = NSLocalizedString("Good evening", comment: "Good evening")
-        case 00 ... 06:
-            currentTimeOfDay = NSLocalizedString("Good night", comment: "Good night")
-        default:
-            currentTimeOfDay = NSLocalizedString("Welcome", comment: "Welcome")
-        }
-        return currentTimeOfDay
-    }
-    
-    func addTookCount(identifier: String) {
-        
-        var tookKey = ""
-        switch identifier {
-        case kTakePillboxEventIdentifier:
-            tookKey = kPillboxMissedCount
-            break
-        case kMorningEventIdentifier:
-            tookKey = kMorningMissedCount
-            break
-        case kEveningEventIdentifier:
-            tookKey = kEveningMissedCount
-            break
-        default:
-            break
-        }
-        
-        UserDefaults.standard.set(UserDefaults.standard.integer(forKey: tookKey) + 1, forKey: tookKey)
-        self.updateMissedCount(identifier: identifier, number: -1)
-        UserDefaults.standard.synchronize()
-    }
-    
-    func updateMissedCount(identifier: String, number: Int) {
+    private func updateMissedCount(identifier: String, number: Int) {
         
         var missedKey = ""
         switch identifier {
@@ -342,19 +309,6 @@ class NeuraSDKManager {
         
         UserDefaults.standard.set(UserDefaults.standard.integer(forKey: missedKey) + number, forKey: missedKey)
         UserDefaults.standard.synchronize()
-    }
-    
-    func showReminder(identifier: String, fireDate: Date, repeatInterval: NSCalendar.Unit) {
-
-        let alertText: (title: String?, body: String?) = self.alertText(identifier: identifier)
-        
-        if (alertText.0 != nil) {
-            self.setupNotificationsSettings(alertTitle: alertText.title!,
-                                            alertBody: alertText.body!,
-                                            identifier: identifier,
-                                            fireDate: fireDate,
-                                            repeatInterval: repeatInterval)
-        }
     }
     
     private func alertText(identifier: String) -> (title: String?, body: String?) {
