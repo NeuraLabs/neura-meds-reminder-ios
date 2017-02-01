@@ -84,8 +84,8 @@ class NeuraSDKManager {
                                                "userWokeUp",
                                                "userIsAboutToGoToSleep" ] as NSMutableArray
                                 
+                                self.subscribeToEvents(events: events)
                                 callback(true, nil)
-                                self.subscribeToEvents(events: events )
         })
     }
     
@@ -137,37 +137,37 @@ class NeuraSDKManager {
         let day = components.day
         
         switch eventName {
-        case .eventUserGotUp:
+        case .eventUserGotUp: // handles both morning pills and 30 minutes later handles pillbox reminder
             let takePillboxEventDate = UserDefaults.standard.integer(forKey: kTakePillboxEventDate)
-            
             if takePillboxEventDate != day {
-                UserDefaults.standard.set(day, forKey: kTakePillboxEventDate)
-                let fireDate = now + TimeInterval (30 * 60)
-                self.showReminder(identifier: kTakePillboxEventIdentifier, fireDate: fireDate, repeatInterval: NSCalendar.Unit(rawValue: 0))
-                self.updateMissedCount(identifier: kTakePillboxEventIdentifier, number: 1)
+                self.handlePushEvent(eventDay: (day: day!, eventDateUserDefaultsKey: kTakePillboxEventDate), eventIdentifier: kTakePillboxEventIdentifier, fireDate: now + TimeInterval (30 * 60))
             }
-        case .eventUserWokeUp:
-            // morning event
+            
+            let morningEventDate = UserDefaults.standard.integer(forKey: kMorningEventDate)
+            if morningEventDate != day {
+                self.handlePushEvent(eventDay: (day: day!, eventDateUserDefaultsKey: kMorningEventDate), eventIdentifier: kMorningEventIdentifier, fireDate: now)
+            }
+        case .eventUserWokeUp: // handles morning pills
             let morningEventDate = UserDefaults.standard.integer(forKey: kMorningEventDate)
             
             if morningEventDate != day {
-                UserDefaults.standard.set(day, forKey: kMorningEventDate)
-                self.showReminder(identifier: kMorningEventIdentifier, fireDate: now, repeatInterval: NSCalendar.Unit(rawValue: 0))
-                self.updateMissedCount(identifier: kMorningEventIdentifier, number: 1)
+                self.handlePushEvent(eventDay: (day: day!, eventDateUserDefaultsKey: kMorningEventDate), eventIdentifier: kMorningEventIdentifier, fireDate: now)
             }
-            break
-        case .eventUserIsAboutToGoToSleep:
+        case .eventUserIsAboutToGoToSleep: // handles evening pills 
             let eveningEventDate = UserDefaults.standard.integer(forKey: kEveningEventDate)
             
             if eveningEventDate != day {
-                UserDefaults.standard.set(day, forKey: kEveningEventDate)
-                self.showReminder(identifier: kEveningEventIdentifier, fireDate: now, repeatInterval: NSCalendar.Unit(rawValue: 0))
-                self.updateMissedCount(identifier: kEveningEventIdentifier, number: 1)
+                self.handlePushEvent(eventDay: (day: day!, eventDateUserDefaultsKey: kEveningEventDate), eventIdentifier: kEveningEventIdentifier, fireDate: now)
             }
-            break
         }
         UserDefaults.standard.synchronize()
         self.setupLocalNotificationsFallback()
+    }
+    
+    private func handlePushEvent(eventDay: (day:Int, eventDateUserDefaultsKey: String), eventIdentifier: String, fireDate: Date) {
+        UserDefaults.standard.set(eventDay.day, forKey: eventDay.eventDateUserDefaultsKey)
+        self.showReminder(identifier: eventIdentifier, fireDate: fireDate, repeatInterval: NSCalendar.Unit(rawValue: 0))
+        self.updateMissedCount(identifier: eventIdentifier, number: 1)
     }
     
     private func setupLocalNotificationsFallback() {
@@ -176,6 +176,7 @@ class NeuraSDKManager {
         let now = Date()
         let tomorrow = NSCalendar.current.date(byAdding: Calendar.Component.day, value: 1, to: now)
         let fireDate = NSCalendar.current.date(bySettingHour: 11, minute: 0, second: 0, of: tomorrow!)
+
         self.showReminder(identifier: kMorningEventIdentifier, fireDate: fireDate!, repeatInterval: NSCalendar.Unit.day)
     }
     
@@ -214,6 +215,7 @@ class NeuraSDKManager {
         notification.category = identifier
         notification.userInfo = ["identifier" : identifier]
         notification.repeatInterval = repeatInterval
+        notification.timeZone = TimeZone.current
         sharedApp.scheduleLocalNotification(notification)
     }
     

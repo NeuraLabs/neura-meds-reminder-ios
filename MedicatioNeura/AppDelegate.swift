@@ -18,20 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
         NeuraSDKManager.manager.setup()
-        self.setInitialVC()
-        
         return true
-    }
-    
-    func setInitialVC() {
-    
-        // if the user is not login show the LoginVC
-        if !NeuraSDKManager.manager.IsUserLogin() {
-            let storyboard = UIStoryboard(name: "Login", bundle: nil)
-            let initialViewController = storyboard.instantiateViewController(withIdentifier: "login VC") as! LoginVC
-            self.window?.rootViewController = initialViewController
-            self.window?.makeKeyAndVisible()
-        }
     }
     
     func application(_ application: UIApplication, didReceive notification: UILocalNotification) {

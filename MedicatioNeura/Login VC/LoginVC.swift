@@ -11,9 +11,8 @@ import NeuraSDK
 
 class LoginVC: UIViewController {
     
-    
+    weak var mainVCDelegate: MainVCProtocol?
     @IBOutlet weak var loginButton: CustomButton!
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,14 +28,9 @@ class LoginVC: UIViewController {
                 return
             }
             
-            DispatchQueue.main.async {
-                if NeuraSDKManager.manager.IsUserLogin() {
-                    let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                    let initialViewController = storyboard.instantiateViewController(withIdentifier: "main") as! MainVC
-                    UIApplication.shared.keyWindow?.rootViewController = initialViewController
-                    UIApplication.shared.keyWindow?.makeKeyAndVisible()
+            if NeuraSDKManager.manager.IsUserLogin() {
+                    self.mainVCDelegate?.loginFinished()
                 }
-            }
         })
     }
     

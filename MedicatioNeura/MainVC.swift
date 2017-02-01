@@ -9,25 +9,29 @@
 import UIKit
 import NeuraSDK
 
-class MainVC: UIViewController {
-    
+protocol MainVCProtocol : class {
+    func loginFinished()
+}
+
+class MainVC: UIViewController, MainVCProtocol {
+
     //MARK: Properties
     
     @IBOutlet weak var mainView: UIView!
     @IBOutlet weak var sideBarContainer: UIView!
     @IBOutlet weak var welcomeLabel: UILabel!
-    
     @IBOutlet weak var showSideBarButton: UIButton!
-    
     @IBOutlet weak var stackView: UIStackView!
+    @IBOutlet weak var loginVCContainer: UIView!
     var MorningView: PillReminderView!
     var EveningView: PillReminderView!
     var PillBoxView: PillReminderView!
+    weak var loginVC: LoginVC?
+    
     
     //MARK: Lifecycle Functions
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.willEnterForeground()
         
         self.mainView.layer.shadowColor = UIColor.black.cgColor
         self.mainView.layer.shadowRadius = 10
@@ -54,6 +58,35 @@ class MainVC: UIViewController {
         if learnProgress < 5 {
             self.PillBoxView.updateView(progressValue: Float(learnProgress) / 5.0)
         }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if NeuraSDKManager.manager.IsUserLogin() {
+            self.willEnterForeground()
+        }
+    }
+    
+    internal func loginFinished() {
+        self.loginVC?.removeFromParentViewController()
+        self.loginVCContainer.removeFromSuperview()
+        DispatchQueue.main.async {
+            self.willEnterForeground()
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "segueToLogin" {
+            self.loginVC = segue.destination as? LoginVC
+            self.loginVC?.mainVCDelegate = self
+        }
+    }
+    
+    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+        if identifier == "segueToLogin" {
+            return !NeuraSDKManager.manager.IsUserLogin()
+        }
+        return true
     }
     
     func setCountLabels() {

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16C68" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -108,13 +108,23 @@
                                     <constraint firstAttribute="trailing" secondItem="E6A-N8-sJg" secondAttribute="trailing" id="z2C-vg-mdx"/>
                                 </constraints>
                             </view>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="spR-2Y-88y">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <connections>
+                                    <segue destination="zxP-Nc-ih5" kind="embed" identifier="segueToLogin" id="t3S-dc-yme"/>
+                                </connections>
+                            </containerView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
                         <constraints>
+                            <constraint firstAttribute="bottom" secondItem="spR-2Y-88y" secondAttribute="bottom" id="BsZ-Es-Tfm"/>
+                            <constraint firstAttribute="trailing" secondItem="spR-2Y-88y" secondAttribute="trailing" id="JGq-Rt-0lu"/>
                             <constraint firstItem="Vge-o3-WnI" firstAttribute="leading" secondItem="rnW-9a-a7u" secondAttribute="leading" id="Vtr-Hg-1jo"/>
                             <constraint firstItem="Vge-o3-WnI" firstAttribute="top" secondItem="rnW-9a-a7u" secondAttribute="top" id="baa-B9-HCJ"/>
+                            <constraint firstItem="spR-2Y-88y" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="epv-lu-b6u"/>
                             <constraint firstItem="Vge-o3-WnI" firstAttribute="bottom" secondItem="wfy-db-euE" secondAttribute="top" id="iUQ-RQ-Qqv"/>
+                            <constraint firstItem="spR-2Y-88y" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="j0V-iM-GY6"/>
                             <constraint firstAttribute="trailing" secondItem="Vge-o3-WnI" secondAttribute="trailing" id="kJG-S5-anj"/>
                             <constraint firstItem="Vge-o3-WnI" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="n90-le-i93"/>
                             <constraint firstItem="Vge-o3-WnI" firstAttribute="bottom" secondItem="rnW-9a-a7u" secondAttribute="bottom" id="s5q-E4-s2c"/>
@@ -126,6 +136,7 @@
                         </connections>
                     </view>
                     <connections>
+                        <outlet property="loginVCContainer" destination="spR-2Y-88y" id="wWv-Uy-KaV"/>
                         <outlet property="mainView" destination="Vge-o3-WnI" id="9Sy-qE-zwn"/>
                         <outlet property="showSideBarButton" destination="R9d-9L-xWu" id="9hz-f9-L8e"/>
                         <outlet property="sideBarContainer" destination="rnW-9a-a7u" id="dHj-qu-sqW"/>
@@ -140,7 +151,7 @@
                     </connections>
                 </swipeGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="91.304347826086968" y="20.380434782608699"/>
+            <point key="canvasLocation" x="90" y="20.070422535211268"/>
         </scene>
         <!--sidebar vc-->
         <scene sceneID="J2d-sP-gYh">
@@ -149,6 +160,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3lw-d1-X1h" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="902" y="-200"/>
+        </scene>
+        <!--login VC-->
+        <scene sceneID="zoM-j1-Dyr">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Login" referencedIdentifier="login VC" id="zxP-Nc-ih5" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nf9-7a-Ckh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="890" y="75"/>
         </scene>
     </scenes>
     <resources>
