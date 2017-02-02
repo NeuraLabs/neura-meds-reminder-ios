@@ -40,6 +40,11 @@ class PillReminderView: UIView {
         return returnView
     }
     
+    func updateCounts(takenCount: String?, missedCount: String?) {
+        self.TookLabel.text = takenCount ?? "\(0)"
+        self.MissedLabel.text = missedCount ?? "\(0)"
+    }
+    
     func updateView(progressValue: Float) {
         
         self.LearningProgressBar.progress = progressValue

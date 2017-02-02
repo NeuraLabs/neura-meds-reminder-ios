@@ -129,13 +129,13 @@ class NeuraSDKManager {
         var tookKey = ""
         switch identifier {
         case kTakePillboxEventIdentifier:
-            tookKey = kPillboxMissedCount
+            tookKey = kPillboxTookCount
             break
         case kMorningEventIdentifier:
-            tookKey = kMorningMissedCount
+            tookKey = kMorningTookCount
             break
         case kEveningEventIdentifier:
-            tookKey = kEveningMissedCount
+            tookKey = kEveningTookCount
             break
         default:
             break
@@ -210,6 +210,7 @@ class NeuraSDKManager {
         
         switch eventName {
         case .eventUserGotUp: // handles both morning pills and 30 minutes later handles pillbox reminder
+            self.setupLocalNotificationsFallback()
             let takePillboxEventDate = UserDefaults.standard.integer(forKey: kTakePillboxEventDate)
             if takePillboxEventDate != day {
                 self.handlePushEvent(eventDay: (day: day!, eventDateUserDefaultsKey: kTakePillboxEventDate), eventIdentifier: kTakePillboxEventIdentifier, fireDate: now + TimeInterval (30 * 60))
@@ -220,6 +221,7 @@ class NeuraSDKManager {
                 self.handlePushEvent(eventDay: (day: day!, eventDateUserDefaultsKey: kMorningEventDate), eventIdentifier: kMorningEventIdentifier, fireDate: now)
             }
         case .eventUserWokeUp: // handles morning pills
+            self.setupLocalNotificationsFallback()
             let morningEventDate = UserDefaults.standard.integer(forKey: kMorningEventDate)
             
             if morningEventDate != day {
@@ -233,7 +235,6 @@ class NeuraSDKManager {
             }
         }
         UserDefaults.standard.synchronize()
-        self.setupLocalNotificationsFallback()
     }
     
     private func handlePushEvent(eventDay: (day:Int, eventDateUserDefaultsKey: String), eventIdentifier: String, fireDate: Date) {
@@ -243,13 +244,16 @@ class NeuraSDKManager {
     }
     
     private func setupLocalNotificationsFallback() {
-        UIApplication.shared.cancelAllLocalNotifications()
-        
-        let now = Date()
-        let tomorrow = NSCalendar.current.date(byAdding: Calendar.Component.day, value: 1, to: now)
-        let fireDate = NSCalendar.current.date(bySettingHour: 11, minute: 0, second: 0, of: tomorrow!)
-        
-        self.showReminder(identifier: kMorningEventIdentifier, fireDate: fireDate!, repeatInterval: NSCalendar.Unit.day)
+        // to avoid sync issues
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+            UIApplication.shared.cancelAllLocalNotifications()
+            
+            let now = Date()
+            let tomorrow = NSCalendar.current.date(byAdding: Calendar.Component.day, value: 1, to: now)
+            let fireDate = NSCalendar.current.date(bySettingHour: 11, minute: 0, second: 0, of: tomorrow!)
+            
+            self.showReminder(identifier: kMorningEventIdentifier, fireDate: fireDate!, repeatInterval: NSCalendar.Unit.day)
+        }
     }
     
     private func setupNotificationsSettings(alertTitle: String, alertBody: String, identifier: String, fireDate: Date, repeatInterval: NSCalendar.Unit) {
@@ -257,7 +261,7 @@ class NeuraSDKManager {
         let sharedApp = UIApplication.shared
         
         let tookAction = UIMutableUserNotificationAction()
-        tookAction.activationMode = .background
+        tookAction.activationMode = .foreground
         tookAction.title = NSLocalizedString("Took", comment: "Took")
         tookAction.isDestructive = false
         tookAction.isAuthenticationRequired = false
@@ -265,7 +269,7 @@ class NeuraSDKManager {
         tookAction.behavior = .default
         
         let laterAction = UIMutableUserNotificationAction()
-        laterAction.activationMode = .background
+        laterAction.activationMode = .foreground
         laterAction.title = NSLocalizedString("Remind me later", comment: "Remind me later")
         laterAction.isDestructive = false
         laterAction.isAuthenticationRequired = false

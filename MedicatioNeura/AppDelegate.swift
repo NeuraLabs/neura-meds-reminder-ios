@@ -23,15 +23,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         guard
             let info = notification.userInfo as? [NSString: NSObject],
-            let identifier = info["identifier"] as? String,
-            application.applicationState == UIApplicationState.active
+            let identifier = info["identifier"] as? String
             else {
                 return
             }
         
         if identifier == kMorningEventIdentifier || identifier == kTakePillboxEventIdentifier || identifier == kEveningEventIdentifier {
-            let fireDate = Date() + TimeInterval (15 * 60)
-            NeuraSDKManager.manager.showReminder(identifier: identifier, fireDate:fireDate, repeatInterval: NSCalendar.Unit(rawValue: 0))
+            if application.applicationState == UIApplicationState.active {
+                let fireDate = Date() + TimeInterval (15 * 60)
+                NeuraSDKManager.manager.showReminder(identifier: identifier, fireDate:fireDate, repeatInterval: NSCalendar.Unit(rawValue: 0))
+            } else {
+                NeuraSDKManager.manager.addTookCount(identifier: identifier)
+            }
         }
     }
     

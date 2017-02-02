@@ -49,6 +49,8 @@ class MainVC: UIViewController, MainVCProtocol {
         
         if (self.MorningView == nil) {
             setCountLabels()
+        } else {
+            updateCountLabels()
         }
         
         let learnProgress = NeuraSDKManager.manager.daysFromLogin()
@@ -120,7 +122,13 @@ class MainVC: UIViewController, MainVCProtocol {
         self.stackView.addArrangedSubview(self.EveningView)
         self.stackView.addArrangedSubview(self.PillBoxView)
         
-        }
+    }
+    
+    func updateCountLabels() {
+        self.MorningView.updateCounts(takenCount: UserDefaults.standard.string(forKey: kMorningTookCount), missedCount: UserDefaults.standard.string(forKey: kMorningMissedCount))
+        self.EveningView.updateCounts(takenCount: UserDefaults.standard.string(forKey: kEveningTookCount), missedCount: UserDefaults.standard.string(forKey: kEveningMissedCount))
+        self.PillBoxView.updateCounts(takenCount: UserDefaults.standard.string(forKey: kPillboxTookCount), missedCount: UserDefaults.standard.string(forKey: kPillboxMissedCount))
+    }
     
     func isSideBarRevealed() -> Bool {
         return self.mainView.frame.origin.x < 0
