@@ -63,7 +63,7 @@ class MainVC: UIViewController, MainVCProtocol {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         if NeuraSDKManager.manager.IsUserLogin() {
-            self.willEnterForeground()
+            self.loginFinished()
         }
     }
     

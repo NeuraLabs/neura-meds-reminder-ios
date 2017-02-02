@@ -23,7 +23,19 @@ class SideBarVC: UIViewController {
     
     @IBAction func shareButtonPressed(_ sender: Any) {
         
-        let message = "Hi, you have been invited to access a Neura SDK configuration which was created to enhance your product by supporting the following features:\n        \n        • Personal Morning Medication Reminder\n        Perfectly timed to when each user wakes up\n        •  Don\'t leave your pillbox behind Call to action\n        When the user leaves home\n        •  Predictive Bedtime Pill Reminder\n        Approach the user before he goes to bed\n        \n        Get started with the sdk: https://dev.theneura.com/v/medical_adherence/new\n        Experience and share the demo with your team: https://play.google.com/store/apps/details?id=com.neura.medsreminder\n        Get the open source add on for med adherence : https://github.com/NeuraLabs/MedicatioNeurAndroid\n        Learn how Neura is specifically tailored to enhance medical adherence solutions: http://www.theneura.com/med-adherence\n        \n        About Neura\n        Neura\'s AI service enables apps and devices to boost engagement by reacting to moments in each user’s day-to-day life.\n        •  1 hour integration\n        •  88% increase in engagement\n        •  Enhance your product with Artificial Intelligence"
+        let message =
+        "Hi, you have been invited to access a Neura SDK configuration which was created to enhance your product by supporting the following features:\n\n" +
+        "• Personal Morning Medication Reminder perfectly timed to when each user wakes up\n" +
+        "•  Don\'t leave your pillbox behind Call to action when the user leaves home\n" +
+        "•  Predictive Bedtime Pill Reminder. Approach the user before she/he goes to bed\n\n" +
+        "Get started with the sdk: https://dev.theneura.com/wizard/med-adherence/new\n" +
+        "Experience and share the demo with your team:\nhttps://itunes.apple.com/us/app/medicationeura/id1187915753?ls=1&mt=8\n" +
+        "Get the open source add on for med adherence:\nhttps://github.com/NeuraLabs/NeuraMedsReminderIOS\n" +
+        "Learn how Neura is specifically tailored to enhance medical adherence solutions:\nhttps://www.theneura.com/med-adherence\n\n" +
+        "About Neura\nNeura\'s AI service enables apps and devices to boost engagement by reacting to moments in each user’s day-to-day life.\n" +
+        "•  1 hour integration\n" +
+        "•  88% increase in engagement\n" +
+        "•  Enhance your product with Artificial Intelligence"
         
         let objectsToShare = [message] as [Any]
         
