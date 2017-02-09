@@ -38,6 +38,8 @@ class MainVC: UIViewController, MainVCProtocol {
         self.mainView.layer.shadowOpacity = 0.3
         
         NotificationCenter.default.addObserver(self, selector: #selector(willEnterForeground), name: .UIApplicationWillEnterForeground, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(willEnterForeground), name: .UIApplicationDidBecomeActive, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(willEnterForeground), name: .UIApplicationWillResignActive, object: nil)
     }
     
     deinit {

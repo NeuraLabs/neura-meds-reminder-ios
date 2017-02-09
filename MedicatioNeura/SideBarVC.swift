@@ -30,7 +30,7 @@ class SideBarVC: UIViewController {
         "•  Predictive Bedtime Pill Reminder. Approach the user before she/he goes to bed\n\n" +
         "Get started with the sdk: https://dev.theneura.com/wizard/med-adherence/new\n" +
         "Experience and share the demo with your team:\nhttps://itunes.apple.com/us/app/medicationeura/id1187915753?ls=1&mt=8\n" +
-        "Get the open source add on for med adherence:\nhttps://github.com/NeuraLabs/NeuraMedsReminderIOS\n" +
+        "Get the open source add on for med adherence:\nhttps://github.com/NeuraLabs/NeuraMedsReminderIOS_Addon\n" +
         "Learn how Neura is specifically tailored to enhance medical adherence solutions:\nhttps://www.theneura.com/med-adherence\n\n" +
         "About Neura\nNeura\'s AI service enables apps and devices to boost engagement by reacting to moments in each user’s day-to-day life.\n" +
         "•  1 hour integration\n" +

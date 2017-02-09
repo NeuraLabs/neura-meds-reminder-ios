@@ -119,7 +119,10 @@ class NeuraSDKManager {
     
     func daysFromLogin() -> Int {
         
-        let loginDate = UserDefaults.standard.object(forKey: kLoginDate) as! Date
+        guard let loginDate = UserDefaults.standard.object(forKey: kLoginDate) as? Date else {
+            return 0
+        }
+        
         let components = Calendar.current.dateComponents([Calendar.Component.day], from: loginDate, to: NSDate() as Date)
         return components.day!
     }
