@@ -20,7 +20,7 @@ class LoginVC: UIViewController {
     
     @IBAction func loginButtonPressed(_ sender: UIButton) {
         
-        NeuraSDKManager.manager.login(viewController: self, callback: { success, error in
+        NeuraSDKManager.manager.login(viewController: self) { success, error in
         
             if success == false {
                 self.showError(error!)
@@ -31,7 +31,7 @@ class LoginVC: UIViewController {
             if NeuraSDKManager.manager.IsUserLogin() {
                     self.mainVCDelegate?.loginFinished()
                 }
-        })
+        }
     }
     
     func showError(_ errorMessage: String) {

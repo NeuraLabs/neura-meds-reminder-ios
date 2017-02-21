@@ -1,12 +1,15 @@
 PODS:
-  - NeuraSDKFramework (2.4.1)
+  - Alamofire (4.3.0)
+  - NeuraSDKFramework (3.0.0)
 
 DEPENDENCIES:
+  - Alamofire (~> 4.3)
   - NeuraSDKFramework
 
 SPEC CHECKSUMS:
-  NeuraSDKFramework: 455bbc01d18a574ba75d9261096ea1b277d702b7
+  Alamofire: 856a113053a7bc9cbe5d6367a555d773fc5cfef7
+  NeuraSDKFramework: 894b6e7cc21d7219ab13bfa8bf6eb8a4afea0d26
 
-PODFILE CHECKSUM: 0c65082e158a24781021967ae2f1770ec8c91884
+PODFILE CHECKSUM: ee240579bbd688d3f0e24ed317b68d70afe902d8
 
 COCOAPODS: 1.1.1

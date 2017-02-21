@@ -31,7 +31,5 @@ let kEveningEventIdentifier = "eveningEventIdentifier"
 let kTakePillboxEventIdentifier = "takePillboxEventIdentifier"
 
 let kTookActionIdentifier = "tookActionIdentifier"
-let kLaterActionIdentifier = "laterActionIdentifier"
-
-
+let kLaterActionIdentifier = "laterActionIdentifier" 
 
