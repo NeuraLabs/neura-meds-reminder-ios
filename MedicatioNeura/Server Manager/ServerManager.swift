@@ -11,10 +11,11 @@ import Alamofire
 class serverManager {
     
     #if DEBUG
-        let serverUrl = "http://webhook.d.theneura-int.com"; //"http://192.168.5.39:3000"
+        let serverUrl = "http://webhook.d.theneura-int.com" //"http://192.168.5.39:3000"
     #else
-        let serverUrl = "https://<some url>"
+        let serverUrl = "https://medadherenceios.herokuapp.com"
     #endif
+    
     // Singleton
     static let manager = serverManager()
     

@@ -83,9 +83,15 @@ class NeuraSDKManager {
 
     private func subscribeToEvent(eventName: EventName, identifier: String, callback: @escaping (_ success: Bool, _ error: String?) -> ()) {
         // Adding a new subscription.
+        #if DEBUG
+            let webhookId = "dokkuWebhook"
+        #else
+            let webhookId = "herokuWebhook"
+        #endif
+        
         let newSubscription = NSubscription(eventName: eventName.rawValue,
                                             identifier: eventName.rawValue + "_" + identifier,
-                                            webhookId: "dokkuWebhook")
+                                            webhookId: webhookId)
         
         NeuraSDK.shared.add(newSubscription) { result in
             if (result.error != nil) {
@@ -172,8 +178,20 @@ class NeuraSDKManager {
         }
         
         UserDefaults.standard.set(UserDefaults.standard.integer(forKey: tookKey) + 1, forKey: tookKey)
-        self.updateMissedCount(identifier: identifier, number: -1)
         UserDefaults.standard.synchronize()
+    }
+
+    func showReminder(identifier: String, fireDate: Date, repeatInterval: NSCalendar.Unit) {
+        
+        let alertText: (title: String?, body: String?) = self.alertText(identifier: identifier)
+        
+        if (alertText.0 != nil) {
+            self.setupNotificationsSettings(alertTitle: alertText.title!,
+                                            alertBody: alertText.body!,
+                                            identifier: identifier,
+                                            fireDate: fireDate,
+                                            repeatInterval: repeatInterval)
+        }
     }
     
     private func getCategoryByIdentifier(identifier: String) -> UIUserNotificationCategory {
@@ -201,24 +219,34 @@ class NeuraSDKManager {
         return actionCategory
     }
     
-    private func updateMissedCount(identifier: String, number: Int) {
+    private func setupNotificationsSettings(alertTitle: String, alertBody: String, identifier: String, fireDate: Date, repeatInterval: NSCalendar.Unit) {
         
-        var missedKey = ""
+        let sharedApp = UIApplication.shared
+        
+        let notificationSettings = UIUserNotificationSettings(types: [.sound, .alert, .badge], categories: [self.getCategoryByIdentifier(identifier: identifier)])
+        sharedApp.registerUserNotificationSettings(notificationSettings)
+        
+        let notification = UILocalNotification()
+        notification.alertTitle = alertTitle
+        notification.alertBody = alertBody
+        notification.fireDate = fireDate
+        notification.category = identifier
+        notification.userInfo = ["identifier" : identifier]
+        notification.repeatInterval = repeatInterval
+        notification.timeZone = TimeZone.current
+        sharedApp.scheduleLocalNotification(notification)
+    }
+    
+    private func alertText(identifier: String) -> (title: String?, body: String?) {
         switch identifier {
         case kTakePillboxEventIdentifier:
-            missedKey = kPillboxMissedCount
-            break
+            return(title: NSLocalizedString("Hi", comment: "Hi"), body: NSLocalizedString("Don't forget to take your pillbox!", comment: "Don't forget to take your pillbox!"))
         case kMorningEventIdentifier:
-            missedKey = kMorningMissedCount
-            break
+            return(title: NSLocalizedString("Good morning", comment: "Good morning"), body: NSLocalizedString("Time for your morning pills :)", comment: "Time for your morning pills :)"))
         case kEveningEventIdentifier:
-            missedKey = kEveningMissedCount
-            break
+            return(title: NSLocalizedString("Good evening", comment: "Good evening"), body: NSLocalizedString("Time for your evening pills", comment: "Time for your evening pills :)"))
         default:
-            break
+            return(title: nil, body: nil); //only show remiders for specific identifiers
         }
-        
-        UserDefaults.standard.set(UserDefaults.standard.integer(forKey: missedKey) + number, forKey: missedKey)
-        UserDefaults.standard.synchronize()
     }
 }
