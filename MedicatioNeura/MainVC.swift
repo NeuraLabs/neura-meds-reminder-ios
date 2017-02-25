@@ -59,9 +59,6 @@ class MainVC: UIViewController, MainVCProtocol {
         if learnProgress < 2 {
             self.EveningView.updateView(progressValue: Float(learnProgress) / 2.0)
         }
-        if learnProgress < 5 {
-            self.PillBoxView.updateView(progressValue: Float(learnProgress) / 5.0)
-        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -97,9 +94,9 @@ class MainVC: UIViewController, MainVCProtocol {
      Set up the views inside the stackView.
      */
     func setCountLabels() {
-        self.MorningView = PillReminderView.instanceFromNib(imageName:"morningiconsmall", headline: "Morning Pills Reminder", subHeadline: "Get reminded to take your pills when you wake up", takenCount: UserDefaults.standard.string(forKey: kMorningTookCount), missedCount: UserDefaults.standard.string(forKey: kMorningMissedCount))
-        self.EveningView = PillReminderView.instanceFromNib(imageName:"eveningiconsmall", headline: "Evening Pills Reminder", subHeadline: "Get reminded to take your pills when you go to sleep", takenCount: UserDefaults.standard.string(forKey: kEveningTookCount), missedCount: UserDefaults.standard.string(forKey: kEveningMissedCount))
-        self.PillBoxView = PillReminderView.instanceFromNib(imageName:"pillboxiconsmall", headline: "Med Box Reminder", subHeadline: "Get reminded to take your pillbox with you when you leave home", takenCount: UserDefaults.standard.string(forKey: kPillboxTookCount), missedCount: UserDefaults.standard.string(forKey: kPillboxMissedCount))
+        self.MorningView = PillReminderView.instanceFromNib(imageName:"morningiconsmall", headline: "Morning Pills Reminder", subHeadline: "Get reminded to take your pills when you wake up", takenCount: UserDefaults.standard.string(forKey: kMorningTookCount))
+        self.EveningView = PillReminderView.instanceFromNib(imageName:"eveningiconsmall", headline: "Evening Pills Reminder", subHeadline: "Get reminded to take your pills when you go to sleep", takenCount: UserDefaults.standard.string(forKey: kEveningTookCount))
+        self.PillBoxView = PillReminderView.instanceFromNib(imageName:"pillboxiconsmall", headline: "Med Box Reminder", subHeadline: "Get reminded to take your pillbox with you when you leave home", takenCount: UserDefaults.standard.string(forKey: kPillboxTookCount))
         
         // setup the 2 borders between the views in the stackView
         let borderViewMorning = UIView()
@@ -127,9 +124,9 @@ class MainVC: UIViewController, MainVCProtocol {
     }
     
     func updateCountLabels() {
-        self.MorningView.updateCounts(takenCount: UserDefaults.standard.string(forKey: kMorningTookCount), missedCount: UserDefaults.standard.string(forKey: kMorningMissedCount))
-        self.EveningView.updateCounts(takenCount: UserDefaults.standard.string(forKey: kEveningTookCount), missedCount: UserDefaults.standard.string(forKey: kEveningMissedCount))
-        self.PillBoxView.updateCounts(takenCount: UserDefaults.standard.string(forKey: kPillboxTookCount), missedCount: UserDefaults.standard.string(forKey: kPillboxMissedCount))
+        self.MorningView.updateCounts(takenCount: UserDefaults.standard.string(forKey: kMorningTookCount))
+        self.EveningView.updateCounts(takenCount: UserDefaults.standard.string(forKey: kEveningTookCount))
+        self.PillBoxView.updateCounts(takenCount: UserDefaults.standard.string(forKey: kPillboxTookCount))
     }
     
     func isSideBarRevealed() -> Bool {

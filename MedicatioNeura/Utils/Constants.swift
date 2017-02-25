@@ -14,17 +14,8 @@ let kIsUserLogin = "IsUserLogin"
 let kLoginDate = "loginDate"
 
 let kMorningTookCount = "morningTookCount"
-let kMorningMissedCount = "morningMissedCount"
-
 let kEveningTookCount = "eveningTookCount"
-let kEveningMissedCount = "eveningMissedCount"
-    
 let kPillboxTookCount = "pillboxTookCount"
-let kPillboxMissedCount = "pillboxMissedCount"
-
-let kMorningEventDate = "morningEventDate"
-let kEveningEventDate = "eveningEventDate" 
-let kTakePillboxEventDate = "takePillboxEventDate"
 
 let kMorningEventIdentifier = "morningEventIdentifier"
 let kEveningEventIdentifier = "eveningEventIdentifier"

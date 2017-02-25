@@ -18,15 +18,13 @@ class PillReminderView: UIView {
     @IBOutlet weak var TimeHeadlineLabel: UILabel!
     @IBOutlet weak var TimeSubHeadlineLabel: UILabel!
     @IBOutlet weak var TookLabel: CustomLabel!
-    @IBOutlet weak var MissedLabel: CustomLabel!
     @IBOutlet weak var ProgressView: UIView!
     @IBOutlet weak var LearningProgressBar: UIProgressView!
     
-    class func instanceFromNib(imageName: String, headline: String, subHeadline: String, takenCount: String?, missedCount: String?) -> PillReminderView {
+    class func instanceFromNib(imageName: String, headline: String, subHeadline: String, takenCount: String?) -> PillReminderView {
         
         let returnView = setProps(imageName: imageName, headline: headline, subHeadline: subHeadline)
         returnView.TookLabel.text = takenCount ?? "\(0)"
-        returnView.MissedLabel.text = missedCount ?? "\(0)"
         
         return returnView
     }
@@ -40,9 +38,8 @@ class PillReminderView: UIView {
         return returnView
     }
     
-    func updateCounts(takenCount: String?, missedCount: String?) {
+    func updateCounts(takenCount: String?) {
         self.TookLabel.text = takenCount ?? "\(0)"
-        self.MissedLabel.text = missedCount ?? "\(0)"
     }
     
     func updateView(progressValue: Float) {
@@ -54,6 +51,5 @@ class PillReminderView: UIView {
         self.TimeHeadlineLabel.alpha = 0.1
         self.TimeSubHeadlineLabel.alpha = 0.1
         self.TookLabel.alpha = 0.1
-        self.MissedLabel.alpha = 0.1
     }
 }

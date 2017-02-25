@@ -244,9 +244,9 @@
 				41E92C691DE5A002009AC671 /* Login.storyboard in Resources */,
 				4129E0BD1E03F3B90053925E /* SideBar.storyboard in Resources */,
 				41F3D16F1DE2F0C10078A06D /* LaunchScreen.storyboard in Resources */,
-				41F3D16C1DE2F0C10078A06D /* Assets.xcassets in Resources */,
-				41F3D16A1DE2F0C10078A06D /* Main.storyboard in Resources */,
 				5DF456361E13FD5F004443F2 /* PillReminderView.xib in Resources */,
+				41F3D16A1DE2F0C10078A06D /* Main.storyboard in Resources */,
+				41F3D16C1DE2F0C10078A06D /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

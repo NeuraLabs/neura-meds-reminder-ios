@@ -24,7 +24,6 @@ enum EventName : String {
 }
 
 class NeuraSDKManager {
-    
     /// Singleton
     static let manager = NeuraSDKManager()
     
