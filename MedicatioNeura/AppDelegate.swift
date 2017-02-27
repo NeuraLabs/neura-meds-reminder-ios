@@ -2,9 +2,13 @@
 //  AppDelegate.swift
 //  MedicatioNeura
 //
-//  Created by Gal Mirkin on 21/11/2016.
+//  Created by Youval Vaknin on 21/11/2016.
 //  Copyright © 2016 neura. All rights reserved.
 //
+
+/**
+ The app delegate handles both remote notifications and local notifications. The remote notifications is sent through a server to apn, the "remind me later" action creates a local notification with the same notification category (see NeuraSDKManager.swift)
+ */
 
 import UIKit
 import NeuraSDK

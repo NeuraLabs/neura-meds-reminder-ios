@@ -2,7 +2,7 @@
 //  MainVC.swift
 //  MedicatioNeura
 //
-//  Created by Gal Mirkin on 21/11/2016.
+//  Created by Youval Vaknin on 21/11/2016.
 //  Copyright © 2016 neura. All rights reserved.
 //
 
@@ -47,6 +47,7 @@ class MainVC: UIViewController, MainVCProtocol {
     }
     
     func willEnterForeground() {
+        UIApplication.shared.applicationIconBadgeNumber = 0
         welcomeLabel.text = self.greetingMessage()
         
         if (self.MorningView == nil) {
@@ -99,6 +100,7 @@ class MainVC: UIViewController, MainVCProtocol {
         self.PillBoxView = PillReminderView.instanceFromNib(imageName:"pillboxiconsmall", headline: "Med Box Reminder", subHeadline: "Get reminded to take your pillbox with you when you leave home", takenCount: UserDefaults.standard.string(forKey: kPillboxTookCount))
         
         // setup the 2 borders between the views in the stackView
+        // Implemented in code to show a NSLayoutConstraint example
         let borderViewMorning = UIView()
         borderViewMorning.backgroundColor = UIColor(red: 0.9, green: 0.9, blue: 0.9, alpha: 1.0)
         borderViewMorning.translatesAutoresizingMaskIntoConstraints = false
@@ -151,7 +153,6 @@ class MainVC: UIViewController, MainVCProtocol {
         }
     }
     
-//MARK: - IBAction Functions
     @IBAction func showSideBarButtonPressed(_ sender: Any) {
         self.toggleSideBar()
     }
@@ -162,7 +163,6 @@ class MainVC: UIViewController, MainVCProtocol {
         }
     }
 
-//MARK: - private Functions
     private func greetingMessage() -> String {
         
         let cal = NSCalendar.current
