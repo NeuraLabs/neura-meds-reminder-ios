@@ -6,14 +6,21 @@
 //  Copyright © 2017 neura. All rights reserved.
 //
 
+/**
+ serverManager - interacts with your app server - a node.js sample server can be found here: https://github.com/NeuraLabs/neura-webhook-sample
+ 
+ Make sure to change the following variables to your own:
+ serverUrl
+ */
+
 import Alamofire
 
 class serverManager {
     
     #if DEBUG
-        let serverUrl = "http://webhook.d.theneura-int.com" //"http://192.168.5.39:3000"
+        let serverUrl = "<your debug server url>"
     #else
-        let serverUrl = "https://medadherenceios.herokuapp.com"
+        let serverUrl = "<your release server url>"
     #endif
     
     // Singleton

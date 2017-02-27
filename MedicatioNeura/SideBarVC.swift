@@ -2,7 +2,7 @@
 //  SideBarVC.swift
 //  MedicatioNeura
 //
-//  Created by Gal Mirkin on 16/12/2016.
+//  Created by Youval Vaknin on 16/12/2016.
 //  Copyright © 2016 neura. All rights reserved.
 //
 

@@ -1,13 +1,22 @@
-    //
+//
 //  NeuraSDKManager.swift
 //  MedicatioNeura
 //
-//  Created by Gal Mirkin on 23/11/2016.
+//  Created by Youval Vaknin on 23/11/2016.
 //  Copyright © 2016 neura. All rights reserved.
 //
 
 /**
- NeuraSDKManager class is a wrapper for NeuraSDK. It enables a central location that handles all med adherence needs in a single location
+ NeuraSDKManager - A wrapper for NeuraSDK. It enables a central location that handles all med adherence needs in a single location
+ SDK init
+ Authentication
+ Reminders
+ 
+ Make sure to change the following variables to your own:
+ appUID
+ appSecret
+ webhookId
+ 
  */
 import Foundation
 import NeuraSDK
@@ -27,8 +36,8 @@ class NeuraSDKManager {
     /// Singleton
     static let manager = NeuraSDKManager()
     
-    static var appUID = "9f2797dd7ccff57076d41478d734f18728d7d83a6d772aa6462e2a2bdaa7c9dc"
-    static  var appSecret = "7019b20dbe40eeb42a0d27263d4de99c379fcf6b3f7c04e161f7740aa7fca86b"
+    static var appUID = "<your app id>"
+    static  var appSecret = "<your app secret>"
     
     func setup() {
         // Sets up the Neura SDK
@@ -83,9 +92,9 @@ class NeuraSDKManager {
     private func subscribeToEvent(eventName: EventName, identifier: String, callback: @escaping (_ success: Bool, _ error: String?) -> ()) {
         // Adding a new subscription.
         #if DEBUG
-            let webhookId = "dokkuWebhook"
+            let webhookId = "<your debug webhook name>"
         #else
-            let webhookId = "herokuWebhook"
+            let webhookId = "<your release webhook name>"
         #endif
         
         let newSubscription = NSubscription(eventName: eventName.rawValue,
