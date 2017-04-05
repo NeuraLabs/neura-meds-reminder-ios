@@ -21,6 +21,7 @@
 import Foundation
 import NeuraSDK
 import UserNotifications
+import NotificationCenter
 
 let kPushTokenUserDefaultsKey = "PushTokenUserDefaultsKey"
 let kNeuraIDUserDefaultsKey = "NeuraIDUserDefaultsKey"
@@ -139,13 +140,25 @@ class NeuraSDKManager {
     
 // MARK: - remote notifications registration
     private func registerForRemoteNotifications () {
-        let userNotificationTypes: UIUserNotificationType = [UIUserNotificationType.alert, UIUserNotificationType.badge, UIUserNotificationType.sound]
-        let userNotificationSettings: UIUserNotificationSettings = UIUserNotificationSettings(types: userNotificationTypes,
-                                                                                              categories: [self.getCategoryByIdentifier(identifier: kMorningEventIdentifier),
-                                                                                                           self.getCategoryByIdentifier(identifier: kEveningEventIdentifier),
-                                                                                                           self.getCategoryByIdentifier(identifier: kTakePillboxEventIdentifier)])
-        UIApplication.shared.registerForRemoteNotifications()
-        UIApplication.shared.registerUserNotificationSettings(userNotificationSettings)
+        
+        if #available(iOS 10.0, *) {
+            let userNotificationType: UNAuthorizationOptions = [UNAuthorizationOptions.alert, UNAuthorizationOptions.badge, UNAuthorizationOptions.sound]
+            UNUserNotificationCenter.current().setNotificationCategories([self.getNewCategoryByIdentifier(identifier: kMorningEventIdentifier),
+                                                                          self.getNewCategoryByIdentifier(identifier: kEveningEventIdentifier),
+                                                                          self.getNewCategoryByIdentifier(identifier: kTakePillboxEventIdentifier)])
+            UNUserNotificationCenter.current().requestAuthorization(options: userNotificationType, completionHandler: { (success:Bool, error:Error?) in
+            })
+            
+            
+        } else {
+            let userNotificationTypes: UIUserNotificationType = [UIUserNotificationType.alert, UIUserNotificationType.badge, UIUserNotificationType.sound]
+            let userNotificationSettings: UIUserNotificationSettings = UIUserNotificationSettings(types: userNotificationTypes,
+                                                                                                  categories: [self.getCategoryByIdentifier(identifier: kMorningEventIdentifier),
+                                                                                                               self.getCategoryByIdentifier(identifier: kEveningEventIdentifier),
+                                                                                                               self.getCategoryByIdentifier(identifier: kTakePillboxEventIdentifier)])
+            UIApplication.shared.registerUserNotificationSettings(userNotificationSettings)
+            UIApplication.shared.registerForRemoteNotifications()
+        }
     }
 
     func userRegisteredForRemoteNotifications(tokenData: Data) {
@@ -155,6 +168,54 @@ class NeuraSDKManager {
         
         UserDefaults.standard.setValue(tokenStringReplaced, forKey: kPushTokenUserDefaultsKey)
         UserDefaults.standard.synchronize()
+    }
+    
+    @objc func handleSilentPushForDataCollectionEvent() {
+        let sharedApp = UIApplication.shared
+        
+        if #available(iOS 10.0, *) {
+            let content = UNMutableNotificationContent()
+            content.title = "data collection startedt"
+            content.subtitle = "omg subtitle"
+            content.body = "body :)"
+            content.sound = UNNotificationSound.default()
+
+            let notification = UNNotificationRequest(identifier: "data collection", content: content, trigger: nil)
+            UNUserNotificationCenter.current().add(notification, withCompletionHandler: { (error:Error?) in
+            })
+
+        } else {
+            let notification = UILocalNotification()
+            notification.alertTitle = "data collection started"
+            notification.alertBody = "body :)"
+            notification.timeZone = TimeZone.current
+            sharedApp.presentLocalNotificationNow(notification)
+        }
+    }
+    
+    @objc func handleSilentPushForEvent(notificationFromEvent: NSNotification) {
+        let extraData = (notificationFromEvent.userInfo?["data"] as? Dictionary<String,String>)
+        let extraText = (extraData != nil) ? (extraData?["extra"])! as String? : nil
+
+        if #available(iOS 10.0, *) {
+            let content = UNMutableNotificationContent()
+            content.title = (extraText != nil) ? "Event sent " + extraText! : "Event sent"
+            content.subtitle = "omg subtitle"
+            content.body = "body :)"
+            content.sound = UNNotificationSound.default()
+            
+            let notification = UNNotificationRequest(identifier: "silent push event", content: content, trigger: nil)
+            UNUserNotificationCenter.current().add(notification, withCompletionHandler: { (error:Error?) in
+            })
+            
+        } else {
+            let sharedApp = UIApplication.shared
+            let notification = UILocalNotification()
+            notification.alertTitle = (extraText != nil) ? "Event sent " + extraText! : "Event sent"
+            notification.alertBody = "body :)"
+            notification.timeZone = TimeZone.current
+            sharedApp.presentLocalNotificationNow(notification)
+        }
     }
     
 // MARK: - utilities
@@ -227,22 +288,54 @@ class NeuraSDKManager {
         return actionCategory
     }
     
+    @available(iOS 10.0, *)
+    private func getNewCategoryByIdentifier(identifier: String) -> UNNotificationCategory {
+        let tookAction = UNNotificationAction(identifier: kTookActionIdentifier, title: NSLocalizedString("Took", comment: "Took"), options: [])
+        let laterAction = UNNotificationAction(identifier: kLaterActionIdentifier, title: NSLocalizedString("Later", comment: "Took"), options: [])
+        return UNNotificationCategory(identifier: identifier, actions: [tookAction, laterAction], intentIdentifiers: [], options: [])
+    }
+    
     private func setupNotificationsSettings(alertTitle: String, alertBody: String, identifier: String, fireDate: Date, repeatInterval: NSCalendar.Unit) {
         
-        let sharedApp = UIApplication.shared
-        
-        let notificationSettings = UIUserNotificationSettings(types: [.sound, .alert, .badge], categories: [self.getCategoryByIdentifier(identifier: identifier)])
-        sharedApp.registerUserNotificationSettings(notificationSettings)
-        
-        let notification = UILocalNotification()
-        notification.alertTitle = alertTitle
-        notification.alertBody = alertBody
-        notification.fireDate = fireDate
-        notification.category = identifier
-        notification.userInfo = ["identifier" : identifier]
-        notification.repeatInterval = repeatInterval
-        notification.timeZone = TimeZone.current
-        sharedApp.scheduleLocalNotification(notification)
+        if #available(iOS 10.0, *) {
+            
+            let specificDate = fireDate
+            
+            //convert dateComponents() to Date()
+            let dateComponents = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second, .timeZone], from: specificDate)
+            var trigger: UNNotificationTrigger
+            if (repeatInterval.rawValue > 0) {
+                trigger = UNTimeIntervalNotificationTrigger(timeInterval: TimeInterval(repeatInterval.rawValue), repeats: false)
+            } else {
+                trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
+            }
+            
+            
+            let content = UNMutableNotificationContent()
+            content.title = alertTitle
+            content.subtitle = "omg subtitle"
+            content.body = alertBody
+            content.sound = UNNotificationSound.default()
+            content.categoryIdentifier = identifier
+            content.userInfo = ["identifier" : identifier]
+            
+            
+            let notification = UNNotificationRequest(identifier: "silent push event", content: content, trigger: trigger)
+            UNUserNotificationCenter.current().add(notification, withCompletionHandler: { (error:Error?) in
+            })
+            
+        } else {
+            let sharedApp = UIApplication.shared
+            let notification = UILocalNotification()
+            notification.alertTitle = alertTitle
+            notification.alertBody = alertBody
+            notification.fireDate = fireDate
+            notification.category = identifier
+            notification.userInfo = ["identifier" : identifier]
+            notification.repeatInterval = repeatInterval
+            notification.timeZone = TimeZone.current
+            sharedApp.scheduleLocalNotification(notification)
+        }
     }
     
     private func alertText(identifier: String) -> (title: String?, body: String?) {
